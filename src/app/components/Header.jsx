@@ -3,6 +3,7 @@
 import {
   SignInButton,
   SignUpButton,
+  SignOutButton,
   SignedIn,
   SignedOut,
   UserButton,
@@ -31,10 +32,14 @@ const Header = () => {
           </li>
         </ul>
         <SignedOut>
-          <SignInButton className="border-solid border-2 border-[#000342] px-3 py-1"/>
+          <SignInButton className="border-solid border-2 border-[#000342] px-3 py-1" />
         </SignedOut>
         <SignedIn>
+          <div className="flex justify-between gap-4">
+
           <UserButton />
+          <SignOutButton />
+          </div>
         </SignedIn>
       </div>
     </nav>
