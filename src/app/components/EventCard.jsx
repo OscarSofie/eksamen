@@ -4,11 +4,9 @@ const EventCard = async ({ event }) => {
   const artworks = await getSingleArtwork(event.artworkIds);
 
   return (
-    <div>
+    <div key={event.id}>
       {artworks.map((art) => (
-        <div key={event.id}>
-          <img src={art.image_thumbnail} alt="" />
-        </div>
+        <img src={art.image_thumbnail} alt="" />
       ))}
 
       <h1>{event.title}</h1>
