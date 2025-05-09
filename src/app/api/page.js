@@ -10,7 +10,7 @@ export async function getSearchResults(query) {
   return data.items;
 }
 
-export async function getSingleArtwork(query) {
+export async function getSingleArtwork(object_number) {
   const res = await fetch(
     `https://api.smk.dk/api/v1/art?object_number=${object_number}`
   );
