@@ -1,6 +1,16 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
+import Header from "./components/Header";
+import {
+  ClerkProvider,
 
+} from '@clerk/nextjs'
+
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter", 
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -10,9 +20,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="da" className={inter.variable}>
         <body
         >
+          <Header />
+
           {children}
         </body>
       </html>
