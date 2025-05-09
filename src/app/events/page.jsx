@@ -10,7 +10,6 @@ export default async function eventPage() {
         {allEvents?.map((event) => (
           <div key={event.id} className="hover:shadow-lg rounded-xl p-4">
             <EventCard key={event.id} event={event} />
-            <h1>{event.title}</h1>
           </div>
         ))}
       </div>

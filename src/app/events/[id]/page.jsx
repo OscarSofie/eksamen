@@ -20,6 +20,7 @@ const SingleEvent = async ({ params }) => {
 
       <h1>{event.location?.address}</h1>
       <h2>{event.date}</h2>
+      <p>{event.artworkIds}</p>
     </div>
   );
 };
