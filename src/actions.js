@@ -19,4 +19,5 @@ addLogged(userId, loggedIn);
 
   revalidatePath("/events");
   return { message: '' };
-} */
+}
+ */

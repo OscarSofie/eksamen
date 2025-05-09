@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import {
   SignInButton,
   SignUpButton,
@@ -12,33 +12,34 @@ import {
 const Header = () => {
   return (
     <nav>
-      <div className="flex justify-between items-center p-4 bg-transparent black">
-        <div className="text-2xl font-bold">SMK.</div>
-        <ul className="flex space-x-4">
+      <div className="flex justify-between items-center p-4 bg-transparent">
+        <Link href="/">
+          <div className="text-2xl font-bold">SMK.</div>
+        </Link>
+        <ul className="flex gap-4">
           <li>
-            <a href="/" className="hover:text-gray-400">
+            <Link href="/" className="hover:text-gray-400">
               Udstillinger
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/events" className="hover:text-gray-400">
+            <Link href="/events " className="hover:text-gray-400">
               Lokationer
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/about" className="hover:text-gray-400">
+            <Link href="/about" className="hover:text-gray-400">
               Om SMK
-            </a>
+            </Link>
           </li>
         </ul>
         <SignedOut>
-          <SignInButton className="border-solid border-2 border-[#000342] px-3 py-1" />
+          <SignInButton redirectURl="/events" className="border-solid border-2 border-[#000342] px-3 py-1" />
         </SignedOut>
         <SignedIn>
           <div className="flex justify-between gap-4">
-
-          <UserButton />
-          <SignOutButton />
+            <UserButton />
+            <SignOutButton />
           </div>
         </SignedIn>
       </div>
