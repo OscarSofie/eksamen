@@ -2,23 +2,28 @@
 import Link from "next/link";
 import {
   SignInButton,
-  SignUpButton,
   SignOutButton,
   SignedIn,
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
+  const pathname = usePathname();
+  const hideHeader = pathname.startsWith("/sign-in") || pathname.startsWith("/sign-up");
+
+  if (hideHeader) return null;
+
   return (
     <nav>
       <div className="flex justify-between items-center p-4 bg-transparent">
         <Link href="/">
-          <div className="text-2xl font-bold">SMK.</div>
+          <div className="text-4xl font-extrabold">SMK.</div>
         </Link>
-        <ul className="flex gap-4">
+        <ul className="flex gap-8">
           <li>
-            <Link href="/" className="hover:text-gray-400">
+            <Link href="/events" className="hover:text-gray-400">
               Udstillinger
             </Link>
           </li>
@@ -26,7 +31,7 @@ const Header = () => {
             <Link href="/events " className="hover:text-gray-400">
               Lokationer
             </Link>
-          </li>
+          </li> 
           <li>
             <Link href="/about" className="hover:text-gray-400">
               Om SMK
@@ -34,7 +39,7 @@ const Header = () => {
           </li>
         </ul>
         <SignedOut>
-          <SignInButton redirectURl="/events" className="border-solid border-2 border-[#000342] px-3 py-1" />
+          <SignInButton className="border-solid border-2 border-[#000342] px-3 py-1" />
         </SignedOut>
         <SignedIn>
           <div className="flex justify-between gap-4">
@@ -46,4 +51,5 @@ const Header = () => {
     </nav>
   );
 };
+
 export default Header;
