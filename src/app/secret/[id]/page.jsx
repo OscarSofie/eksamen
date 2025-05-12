@@ -1,4 +1,3 @@
-// src/app/secret/[id]/page.jsx
 import { auth } from '@clerk/nextjs/server'
 
 export default async function Page({ params }) {

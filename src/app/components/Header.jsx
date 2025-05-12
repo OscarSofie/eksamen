@@ -31,7 +31,7 @@ const Header = () => {
             <Link href="/events " className="hover:text-gray-400">
               Lokationer
             </Link>
-          </li>
+          </li> 
           <li>
             <Link href="/about" className="hover:text-gray-400">
               Om SMK
