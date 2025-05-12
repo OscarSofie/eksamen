@@ -27,7 +27,6 @@ const ImageCard = ({ title, description, date, image, isCurator }) => {
       </p>
       <div className="flex flex-col gap-4 mt-7 items-start">
         <Link href="/events/">
-          <Button variant="primary">Se event</Button>
         <Button
           variant="secondary"
         >
