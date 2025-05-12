@@ -2,7 +2,6 @@ import "./globals.css";
 import Header from "./components/Header";
 import {
   ClerkProvider,
-
 } from '@clerk/nextjs'
 
 import { Inter } from "next/font/google";
@@ -21,10 +20,8 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="da" className={inter.variable}>
-        <body
-        >
+        <body className="bg-[#F5F3EC]">
           <Header />
-
           {children}
         </body>
       </html>
