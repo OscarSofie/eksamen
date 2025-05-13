@@ -1,12 +1,12 @@
-/* import OpretForm from "@/app/components/kurator/OpretEventForm";
+import OpretEventForm from '../../components/kurator/OpretEventForm';
+import SearchArt from '../../components/kurator/SearchArt';
 
-const Page = () => {
-  return ( <div>
-    <h1 className="font-bold text-7xl">Opret</h1>
-    <OpretForm />
-  </div> );
+export default function Page() {
+  return (
+    <div className="max-w-xl mx-auto p-6">
+      <h1 className="text-2xl font-bold mb-4">Opret Event</h1>
+      <OpretEventForm />
+   
+    </div>
+  );
 }
- 
-export default Page; */
-
-

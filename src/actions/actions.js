@@ -21,3 +21,29 @@ addLogged(userId, loggedIn);
   return { message: '' };
 }
  */
+
+
+'use server';
+
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+import { createEvent } from '../api/page';
+
+export async function opretEvent(formData) {
+  const title = formData.get('title');
+  const description = formData.get('description');
+  const artist = formData.get('artist');
+  const date = formData.get('date');
+
+  const data = {
+    title,
+    description,
+    artist,
+    date,
+  };
+
+  const nytEvent = await createEvent(data);
+
+  revalidatePath('/events', 'page');
+  redirect(`/events/${nytEvent.id}`);
+}
