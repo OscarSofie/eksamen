@@ -8,10 +8,12 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
+import Button from "./Button";
 
-const Header = () => {
+const Header = ({ isCurator }) => {
   const pathname = usePathname();
-  const hideHeader = pathname.startsWith("/sign-in") || pathname.startsWith("/sign-up");
+  const hideHeader =
+    pathname.startsWith("/sign-in") || pathname.startsWith("/sign-up");
 
   if (hideHeader) return null;
 
@@ -31,7 +33,7 @@ const Header = () => {
             <Link href="/events " className="hover:text-gray-400">
               Lokationer
             </Link>
-          </li> 
+          </li>
           <li>
             <Link href="/about" className="hover:text-gray-400">
               Om SMK
@@ -43,8 +45,15 @@ const Header = () => {
         </SignedOut>
         <SignedIn>
           <div className="flex justify-between gap-4">
+            <Link href="/secret/opret">
+              <Button variant="secondary">Opret Event</Button>
+            </Link>
+            {isCurator === true ? (
+              <Link href="/secret">
+                <Button variant="secondary">Opret Event</Button>
+              </Link>
+            ) : null}
             <UserButton />
-            <SignOutButton />
           </div>
         </SignedIn>
       </div>

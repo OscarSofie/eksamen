@@ -1,4 +1,4 @@
-import { getEvents } from "../api/page";
+import { getEvents } from "../../api/page";
 import EventCard from "../components/EventCard";
 
 export default async function eventPage() {

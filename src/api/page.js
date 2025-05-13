@@ -18,7 +18,7 @@ export async function getSingleArtwork(artworkIds) {
   return data.items;
 }
 
-export async function getSingleEvent() {
+export async function getSingleEvent(id) {
   const res = await fetch(`https://eksamenso.onrender.com/events/${id}`);
   const event = await res.json();
   return event;

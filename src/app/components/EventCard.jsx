@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getSingleArtwork } from "../api/page";
+import { getSingleArtwork } from "../../api/page";
 
 const EventCard = async ({ event }) => {
   const artworks = await getSingleArtwork(event.artworkIds[0]);

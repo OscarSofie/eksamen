@@ -1,4 +1,4 @@
-import { getSingleArtwork } from "@/app/api/page";
+import { getSingleArtwork } from "@/api/page";
 
 const SingleEvent = async ({ params }) => {
   const { id } = params;
