@@ -25,7 +25,7 @@ export async function getSingleEvent(id) {
 }
 
 export async function createEvent(data) {
-  console.log("🟡 Data sendt til backend:", data); // 👈 vigtigt!
+  console.log(data); 
 
   const res = await fetch('https://eksamenso.onrender.com/events', {
     method: 'POST',
@@ -33,14 +33,14 @@ export async function createEvent(data) {
     body: JSON.stringify(data),
   });
 
-  const responseText = await res.text(); // 👈 vi tjekker tekstsvar fra server
+  const responseText = await res.text(); 
 
-  console.log("🔴 Server response:", res.status, responseText); // 👈 se hvad backend svarer
+  console.log("🔴 Server response:", res.status, responseText); 
 
   if (!res.ok) {
     throw new Error('Noget gik galt under oprettelse af event');
   }
 
-  return JSON.parse(responseText); // parse manuelt siden vi allerede har læst den
+  return JSON.parse(responseText);
 }
 
