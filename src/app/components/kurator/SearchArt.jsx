@@ -26,7 +26,6 @@ export default function SearchArt({ selectedIds, setSelectedIds }) {
 
     setSelectedIds(nyListe);
 
-    // vis titel i inputfelt + luk liste
     if (!isSelected) {
       setSearchTerm(item.titles?.[0]?.title || id);
       setResults([]);

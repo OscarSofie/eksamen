@@ -35,6 +35,7 @@ export async function opretEvent(formData) {
   const date = formData.get('date');
   const locationId = formData.get('locationId');
   const artworkIdsRaw = formData.get('artworkIds');
+  const image = formData.get('image_thumbnail');
 
   const artworkIds = JSON.parse(artworkIdsRaw || '[]');
 
@@ -45,6 +46,7 @@ export async function opretEvent(formData) {
     date,
     locationId,
     artworkIds,
+    image
   };
 
   console.log('Sender data til createEvent:', data);
