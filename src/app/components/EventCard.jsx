@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getSingleArtwork } from "../api/page";
+import { getSingleArtwork } from "@/api/page";
 import Image from "next/image";
 import Button from "./Button";
 import { SignedIn } from "@clerk/nextjs";

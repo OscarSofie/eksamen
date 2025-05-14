@@ -1,4 +1,4 @@
-import { getSingleArtwork } from "@/app/api/page";
+import { getSingleArtwork } from "@/api/page";
 import Image from "next/image";
 import Head from "next/head";
 
