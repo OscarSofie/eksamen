@@ -24,20 +24,23 @@ export async function getSingleEvent(id) {
   return event;
 }
 
-const API_URL = "https://eksamenso.onrender.com/events";
-
 export async function createEvent(data) {
-  const res = await fetch(API_URL, {
+  console.log("🟡 Data sendt til backend:", data); // 👈 vigtigt!
+
+  const res = await fetch('https://eksamenso.onrender.com/events', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
 
+  const responseText = await res.text(); // 👈 vi tjekker tekstsvar fra server
+
+  console.log("🔴 Server response:", res.status, responseText); // 👈 se hvad backend svarer
+
   if (!res.ok) {
     throw new Error('Noget gik galt under oprettelse af event');
   }
 
-  const nytEvent = await res.json();
-  return nytEvent;
+  return JSON.parse(responseText); // parse manuelt siden vi allerede har læst den
 }
 

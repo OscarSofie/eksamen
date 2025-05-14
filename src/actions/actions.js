@@ -25,25 +25,31 @@ addLogged(userId, loggedIn);
 
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { createEvent } from '../api/page';
+import { createEvent } from '@/api/page';
 
 export async function opretEvent(formData) {
   const title = formData.get('title');
   const description = formData.get('description');
-  const artist = formData.get('artist');
+  const curator = formData.get('curator');
   const date = formData.get('date');
+  const locationId = formData.get('locationId');
+  const artworkIdsRaw = formData.get('artworkIds');
+
+  const artworkIds = JSON.parse(artworkIdsRaw || '[]');
 
   const data = {
     title,
     description,
-    artist,
+    curator,
     date,
+    locationId,
+    artworkIds,
   };
 
-  const nytEvent = await createEvent(data);
+  console.log('Sender data til createEvent:', data);
 
-  revalidatePath('/events', 'page');
-  redirect(`/events/${nytEvent.id}`);
+  const newEvent = await createEvent(data);
+
+  redirect(`/events/${newEvent.id}`);
 }

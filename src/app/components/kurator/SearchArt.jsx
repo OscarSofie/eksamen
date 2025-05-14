@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { getSearchResults } from '@/api/page';
+import { useState } from "react";
+import { getSearchResults } from "@/api/page";
 
-export default function SearchArt({ kunstId, setkunstId }) {
-  const [searchTerm, setSearchTerm] = useState('');
+export default function SearchArt({ selectedIds, setSelectedIds }) {
+  const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -18,16 +18,16 @@ export default function SearchArt({ kunstId, setkunstId }) {
 
   function klikCheckbox(item) {
     const id = item.object_number;
-    const isAlleredeValgt = kunstId.includes(id);
+    const isSelected = selectedIds.includes(id);
 
-    const nyListe = isAlleredeValgt
-      ? kunstId.filter((i) => i !== id)
-      : [...kunstId, id];
+    const nyListe = isSelected
+      ? selectedIds.filter((i) => i !== id)
+      : [...selectedIds, id];
 
-    setkunstId(nyListe);
+    setSelectedIds(nyListe);
 
     // vis titel i inputfelt + luk liste
-    if (!isAlleredeValgt) {
+    if (!isSelected) {
       setSearchTerm(item.titles?.[0]?.title || id);
       setResults([]);
     }
@@ -60,7 +60,7 @@ export default function SearchArt({ kunstId, setkunstId }) {
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
-                  checked={kunstId.includes(item.object_number)}
+                  checked={selectedIds.includes(item.object_number)}
                   onChange={() => klikCheckbox(item)}
                 />
                 {item.titles?.[0]?.title || item.object_number}
