@@ -1,4 +1,3 @@
-// src/app/components/Button.jsx
 "use client";
 import { SignedIn } from "@clerk/nextjs";
 

@@ -18,7 +18,7 @@ const Header = ({ isCurator }) => {
   if (hideHeader) return null;
 
   return (
-    <nav>
+    <nav className="relative z-10 bg-[#F5F3EC]">
       <div className="flex justify-between items-center p-4 bg-transparent">
         <Link href="/">
           <div className="text-4xl font-extrabold">SMK.</div>

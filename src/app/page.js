@@ -1,12 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getSingleArtwork } from "../../api/page";
+import Hero from "@/app/components/hero/Hero";
+import { FrontEvents } from "@/api/page";
 
-export default function Home() {
+export default async function Home() {
+  const events = await FrontEvents();
+
   return (
     <div className="mx-10">
-
-
+      <Hero events={events} /> 
     </div>
   );
 }

@@ -44,3 +44,9 @@ export async function createEvent(data) {
   return JSON.parse(responseText);
 }
 
+
+export async function FrontEvents() {
+  const res = await fetch('https://eksamenso.onrender.com/events');
+  const allEvents = await res.json();
+  return allEvents.slice(0, 2); // returnér kun de to første
+}

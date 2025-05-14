@@ -18,7 +18,7 @@ const EventCard = async ({
     <div className="bg-[#F5F3EC] p-4 w-xs flex flex-col ">
       <Link href={`/events/${event.id}`}>
         {artworks.map((art) => (
-          <div>
+          <div> 
             <Image
               key={event.id}
               src={art.image_thumbnail}
