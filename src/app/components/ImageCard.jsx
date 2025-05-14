@@ -26,12 +26,13 @@ const ImageCard = ({ title, description, date, image, isCurator }) => {
         mørke i kunsten. Værker der udforsker skygger, kontraster og stemninger.
       </p>
       <div className="flex flex-col gap-4 mt-7 items-start">
+        <Link href="/events/">
         <Button
           variant="secondary"
-          onClick={() => alert("Læs mere om udstillingen")}
         >
           Læs mere om udstillingen
         </Button>
+        </Link>
 
         <SignedIn>
           <Link href="/secret">
