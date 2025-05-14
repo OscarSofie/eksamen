@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { opretEvent } from '@/actions/actions';
-import SearchArt from './SearchArt';
-import SubmitButton from './SubmitButton';
+import { useState } from "react";
+import { opretEvent } from "@/actions/actions";
+import SearchArt from "./SearchArt";
+import SubmitButton from "./SubmitButton";
+import { getAllArtworks } from "@/api/page";
 
 export default function OpretEventForm() {
   const [selectedIds, setSelectedIds] = useState([]);
@@ -54,11 +55,25 @@ export default function OpretEventForm() {
       >
         <option value="">Vælg dato</option>
         {[
-          '2025-05-01', '2025-05-02', '2025-05-03', '2025-05-04', '2025-05-05',
-          '2025-05-06', '2025-05-07', '2025-05-08', '2025-05-09', '2025-05-10',
-          '2025-05-11', '2025-05-12', '2025-05-13', '2025-05-14', '2025-05-15',
+          "2025-05-01",
+          "2025-05-02",
+          "2025-05-03",
+          "2025-05-04",
+          "2025-05-05",
+          "2025-05-06",
+          "2025-05-07",
+          "2025-05-08",
+          "2025-05-09",
+          "2025-05-10",
+          "2025-05-11",
+          "2025-05-12",
+          "2025-05-13",
+          "2025-05-14",
+          "2025-05-15",
         ].map((d) => (
-          <option key={d} value={d}>{d}</option>
+          <option key={d} value={d}>
+            {d}
+          </option>
         ))}
       </select>
 
