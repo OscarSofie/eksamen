@@ -45,8 +45,8 @@ const ArtSingleview = async ({ params }) => {
           className="  object-cover  lg:h-[85vh] md:w-auto h-full  "
         ></Image>
       </div>
-      <div className="absolute left-10 top-1/2 z-20 text-[#eae8e0]">
-        <h1 className="text-7xl font-extrabold max-w-3xl">
+      <div className="absolute left-10 bottom-1/3 top-1/2  z-20 text-[#eae8e0] place-self-center ">
+        <h1 className="text-7xl font-extrabold max-w-4xl">
           {item.titles?.[0].title}
         </h1>
       </div>
@@ -70,7 +70,7 @@ const ArtSingleview = async ({ params }) => {
                       width={300}
                       height={300}
                       className="object-cover"
-                      alt={artwork.titles?.[0]?.title || "Similar artwork"}
+                      alt={artwork.titles?.[0]?.title || "Ukendt titel"}
                     />
                   </Link>
                 </div>
