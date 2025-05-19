@@ -12,14 +12,14 @@ const ValgteVaerker = () => {
         <li key={item.object_number}>
           <Image
             src={item.image_thumbnail || "/img/placeholder.svg"}
-            alt={item.titles?.title}
+            alt={item.titles?.[0]?.title}
             width={200}
             height={150}
             className="object-cover rounded"
           />
           <div className="mt-2">
             <p className="font-semibold text-sm">
-              {item.titles?.title || item.object_number}
+              {item.titles?.[0]?.title || item.object_number}
             </p>
             <p className="text-xs text-gray-500">{item.artist_names?.[0]}</p>
             <button

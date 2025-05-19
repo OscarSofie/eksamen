@@ -32,7 +32,8 @@ export async function getAllArtworks() {
   return data.objectIDs;
 }
 
-export async function getSingleEvent(id) {
+export async function getSingleEvent(artworkIds) {
+  const query = Array.isArray(artworkIds) ? artworkIds.join(",") : artworkIds;
   const res = await fetch(`https://eksamenso.onrender.com/events/${id}`);
   const event = await res.json();
   return event;
