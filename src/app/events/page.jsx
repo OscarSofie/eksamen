@@ -28,7 +28,7 @@ export default async function eventPage() {
 
         return events.length > 0 ? (
           <section key={locationId}>
-            <h1>{locations[locationId]}</h1>
+            <h1 className="text-5xl font-bold">{locations[locationId]}</h1>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
               {events?.map((event) => (
                 <div key={event.id} className="hover:shadow-lg rounded-xl p-4">
