@@ -1,4 +1,3 @@
-import { getSingleArtwork } from "@/api/page";
 import Image from "next/image";
 
 const ArtSingleview = async ({ params }) => {
