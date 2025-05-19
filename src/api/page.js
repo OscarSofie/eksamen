@@ -67,3 +67,16 @@ export async function fetchSomeArtworks() {
   const data = await res.json();
   return data.items;
 }
+
+// export async function getArtwork(objectIDs) {
+//   const artworks = await Promise.all(
+//     objectIDs.map(async (id) => {
+//       const res = await fetch(
+//         `https://api.smk.dk/api/v1/art?object_number=${id}`
+//       );
+//       const data = await res.json();
+//       return data.items?.[0];
+//     })
+//   );
+//   return artworks;
+// }
