@@ -49,7 +49,6 @@ export async function createEvent(data) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-
   const responseText = await res.text();
 
   console.log("response:", res.status, responseText);
@@ -61,6 +60,38 @@ export async function createEvent(data) {
   return JSON.parse(responseText);
 }
 
+export async function deleteEvent(data) {
+  console.log("server:", JSON.stringify(data, null, 2));
+
+  const res = await fetch("https://eksamenso.onrender.com/events/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  const responseText = await res.text();
+
+  console.log("response:", res.status, responseText);
+
+  if (!res.ok) {
+    throw new Error("Noget gik galt under sletning af event");
+  }
+
+  return JSON.parse(responseText);
+}
+
+export async function updateEvent(id, updatedData) {
+  const res = await fetch(`https://eksamenso.onrender.com/events/${id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(updatedData),
+  });
+
+  if (!res.ok) {
+    throw new Error('Noget gik galt under opdatering af event');
+  }
+
+  return await res.json()}
+
 export async function fetchSomeArtworks() {
   const res = await fetch(
     "https://api.smk.dk/api/v1/art/search?keys=kunst&offset=0&rows=100"
@@ -69,15 +100,4 @@ export async function fetchSomeArtworks() {
   return data.items;
 }
 
-// export async function getArtwork(objectIDs) {
-//   const artworks = await Promise.all(
-//     objectIDs.map(async (id) => {
-//       const res = await fetch(
-//         `https://api.smk.dk/api/v1/art?object_number=${id}`
-//       );
-//       const data = await res.json();
-//       return data.items?.[0];
-//     })
-//   );
-//   return artworks;
-// }
+
