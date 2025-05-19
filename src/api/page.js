@@ -44,7 +44,7 @@ export async function getSingleEvent(artworkIds) {
 export async function createEvent(data) {
   console.log("server:", JSON.stringify(data, null, 2));
 
-  const res = await fetch("https://eksamenso.onrender.com/events", {
+  const res = await fetch("https://eksamenso.onrender.com/events/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),

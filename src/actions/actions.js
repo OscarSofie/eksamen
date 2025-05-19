@@ -34,9 +34,8 @@ export async function opretEvent(formData) {
   const curator = formData.get('curator');
   const date = formData.get('date');
   const locationId = formData.get('locationId');
-  const artworkIds = formData.get('artworkIds');
-
- /*  const artworkIds = JSON.parse(artworkIdsRaw || '[]'); */
+  const artworkIdsString = formData.get('artworkIds');
+  const artworkIds = JSON.parse(artworkIdsString || '[]');
 
   const data = {
     title,
@@ -47,7 +46,7 @@ export async function opretEvent(formData) {
     artworkIds,
   };
 
-  console.log('Sender data til createEvent:', data);
+  console.log('Sender data til createEvent:', artworkIds);
 
   const newEvent = await createEvent(data);
 

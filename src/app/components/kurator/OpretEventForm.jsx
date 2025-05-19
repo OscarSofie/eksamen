@@ -11,7 +11,6 @@ export default function OpretEventForm() {
   const artworkIds = artworks.map((art) => art.object_number);
   console.log("Artwork ID:", artworkIds);
 
-
   return (
     <form
       action={opretEvent}
@@ -79,6 +78,12 @@ export default function OpretEventForm() {
           </option>
         ))}
       </select>
+
+      <input
+        type="hidden"
+        name="artworkIds"
+        value={JSON.stringify(artworkIds)} 
+      />
 
       <SubmitButton className="bg-blue-600 text-white px-4 py-2 rounded">
         Opret event
