@@ -18,14 +18,6 @@ export async function getSingleArtwork(artworkIds) {
   return data.items;
 }
 
-export async function getArtwork(objectIDs) {
-  const res = await fetch(
-    `https://api.smk.dk/api/v1/art?object_number=${objectIDs}`
-  );
-  const data = await res.json();
-  return data;
-}
-
 export async function getAllArtworks() {
   const res = await fetch("https://api.smk.dk/api/v1/art/all_ids");
   const data = await res.json();
@@ -56,4 +48,17 @@ export async function createEvent(data) {
   }
 
   return JSON.parse(responseText);
+}
+
+export async function getArtwork(objectIDs) {
+  const artworks = await Promise.all(
+    objectIDs.map(async (id) => {
+      const res = await fetch(
+        `https://api.smk.dk/api/v1/art?object_number=${id}`
+      );
+      const data = await res.json();
+      return data.items?.[0]; // eller tilpas ud fra API-strukturen
+    })
+  );
+  return artworks;
 }
