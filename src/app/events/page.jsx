@@ -15,7 +15,7 @@ export default async function eventPage() {
     3: [],
   };
 
-  allEvents?.map((event) => {
+  allEvents.map((event) => {
     eventGroups[event.locationId]
       ? eventGroups[event.locationId].push(event)
       : null;
