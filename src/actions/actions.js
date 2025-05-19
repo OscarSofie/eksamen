@@ -34,9 +34,9 @@ export async function opretEvent(formData) {
   const curator = formData.get('curator');
   const date = formData.get('date');
   const locationId = formData.get('locationId');
-  const artworkIdsRaw = formData.get('artworkIds');
+  const artworkIds = formData.get('artworkIds');
 
-  const artworkIds = JSON.parse(artworkIdsRaw || '[]');
+ /*  const artworkIds = JSON.parse(artworkIdsRaw || '[]'); */
 
   const data = {
     title,

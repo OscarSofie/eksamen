@@ -18,7 +18,7 @@ const SearchArt = ({ alleVaerker = [] }) => {
 
   const prSide = 30; // - hvor mange værker der skal vises pr. side
 
-  // Søger værker baseret
+  // Søger værker baseret på input
   const soegVaerker = async () => {
     if (!searchQuery.trim()) return; // - sørger for vi ikke kan søge med tomt søgefelt
     const data = await getSearchResults(searchQuery); // - kalder api'et
@@ -26,7 +26,7 @@ const SearchArt = ({ alleVaerker = [] }) => {
     setPage(1);
   };
 
-  // Her tilføjer (og fjerner) man et kunstværk
+  // Her kan man tilføje (og fjerne) et kunstværk
   const klikCheckbox = (item) => {
     const id = item.object_number; // - vælges ud fra sit ID
     const isSelected = artworks.some((art) => art.object_number === id); // - tjekker om værket allerede er valgt
@@ -84,14 +84,14 @@ const SearchArt = ({ alleVaerker = [] }) => {
             <li key={item.object_number}>
               <Image
                 src={item.image_thumbnail || "/img/placeholder.svg"}
-                alt={item.titles.title || "Artwork"}
+                alt={item.titles?.[0]?.title|| "Artwork"}
                 width={200}
                 height={150}
                 className="object-cover rounded"
               />
               <div className="mt-2">
                 <p className="font-semibold text-sm">
-                  {item.titles.title || item.object_number}
+                  {item.titles?.[0]?.title|| item.object_number}
                 </p>
                 <p className="text-xs text-gray-500">
                   {item.artist_names?.[0] || "Ukendt kunstner"}
