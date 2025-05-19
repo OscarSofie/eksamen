@@ -2,45 +2,54 @@
 
 import { useState } from "react";
 import { getSearchResults } from "@/api/page";
+import { useZustand } from "@/store/zustand";
 
-export default function SearchArt({ selectedIds, setSelectedIds }) {
-  const [searchTerm, setSearchTerm] = useState("");
+import Image from "next/image";
+
+// SearchArt-komponent viser kunstværker og håndterer søgning og valg
+const SearchArt = ({ alleVaerker = [] }) => {
+  const { artworks, addArtwork, removeArtwork } = useZustand();
+
+  // Her gemmer vi det kuratoren søger på
+  const [searchQuery, setsearchQuery] = useState("");
+  // her vises resultaterne fra API'et
   const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1); // - til sider
 
-  async function soegVaerker() {
-    if (!searchTerm.trim()) return;
-    setLoading(true);
-    const data = await getSearchResults(searchTerm);
-    setResults(data);
-    setLoading(false);
-  }
+  const prSide = 30; // - hvor mange værker der skal vises pr. side
 
-  function klikCheckbox(item) {
-    const id = item.object_number;
-    const isSelected = selectedIds.includes(id);
+  // Søger værker baseret
+  const soegVaerker = async () => {
+    if (!searchQuery.trim()) return; // - sørger for vi ikke kan søge med tomt søgefelt
+    const data = await getSearchResults(searchQuery); // - kalder api'et
+    setResults(data); // - gemmer kaldet i state
+    setPage(1);
+  };
 
-    const nyListe = isSelected
-      ? selectedIds.filter((i) => i !== id)
-      : [...selectedIds, id];
+  // Her tilføjer (og fjerner) man et kunstværk
+  const klikCheckbox = (item) => {
+    const id = item.object_number; // - vælges ud fra sit ID
+    const isSelected = artworks.some((art) => art.object_number === id); // - tjekker om værket allerede er valgt
 
-    setSelectedIds(nyListe);
-
-    // vis titel i inputfelt + luk liste
-    if (!isSelected) {
-      setSearchTerm(item.titles?.[0]?.title || id);
-      setResults([]);
+    if (isSelected) {
+      removeArtwork(id); // - fjerner
+    } else {
+      addArtwork(item); // - tilføjer
     }
-  }
+  };
+
+  const kunstListe = searchQuery ? results : alleVaerker; // - Hvis der er ikke er valgt et værk, vises alle
+  const antalSider = Math.ceil(kunstListe.length / prSide); // - hvor mange sider der skal være
+  const side = kunstListe.slice((page - 1) * prSide, page * prSide); // - finder de værker der skal vises på den aktuelle side
 
   return (
-    <div className="space-y-4">
-      <div className="flex gap-2">
+    <div className="flex flex-col justify-center gap-4 mx-20">
+      <div className="flex columns-4 gap-2">
         <input
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={searchQuery}
+          onChange={(e) => setsearchQuery(e.target.value)}
           placeholder="Søg i SMK API"
-          className="border border-gray-300 rounded p-2 flex-1"
+          className="border border-gray-300 rounded p-2"
         />
         <button
           type="button"
@@ -51,24 +60,57 @@ export default function SearchArt({ selectedIds, setSelectedIds }) {
         </button>
       </div>
 
-      {loading && <p className="text-gray-500">Søger...</p>}
+      <div className="flex justify-center items-center gap-4 mt-4">
+        <button
+          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+          disabled={page === 1}
+        >
+          Forrige
+        </button>
+        <span className="text-sm mt-1">
+          Side {page} af {antalSider}
+        </span>
+        <button
+          onClick={() => setPage((prev) => Math.min(prev + 1, antalSider))}
+          disabled={page === antalSider}
+        >
+          Næste
+        </button>
+      </div>
 
-      {results.length > 0 && (
-        <ul className="space-y-1 border p-2 rounded bg-white shadow">
-          {results.map((item) => (
+      {kunstListe.length > 0 && (
+        <ul className="grid grid-cols-4 gap-2-">
+          {side.map((item) => (
             <li key={item.object_number}>
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={selectedIds.includes(item.object_number)}
-                  onChange={() => klikCheckbox(item)}
-                />
-                {item.titles?.[0]?.title || item.object_number}
-              </label>
+              <Image
+                src={item.image_thumbnail || "/img/placeholder.svg"}
+                alt={item.titles.title || "Artwork"}
+                width={200}
+                height={150}
+                className="object-cover rounded"
+              />
+              <div className="mt-2">
+                <p className="font-semibold text-sm">
+                  {item.titles.title || item.object_number}
+                </p>
+                <p className="text-xs text-gray-500">
+                  {item.artist_names?.[0] || "Ukendt kunstner"}
+                </p>
+                <label className="flex items-center gap-2 mt-1">
+                  <input
+                    type="checkbox"
+                    checked={artworks.some((art) => art.object_number === item.object_number)}
+                    onChange={() => klikCheckbox(item)}
+                  />
+                  Vælg
+                </label>
+              </div>
             </li>
           ))}
         </ul>
       )}
     </div>
   );
-}
+};
+
+export default SearchArt;

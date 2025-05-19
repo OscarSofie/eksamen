@@ -1,4 +1,4 @@
-import { getAllArtworks } from "@/api/page";
+/* import { getAllArtworks } from "@/api/page";
 import Image from "next/image";
 
 const AllArtworks = async () => {
@@ -39,3 +39,4 @@ const AllArtworks = async () => {
 };
 
 export default AllArtworks;
+ */

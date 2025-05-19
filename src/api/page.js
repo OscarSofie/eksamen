@@ -27,7 +27,7 @@ export async function getArtwork(objectIDs) {
 }
 
 export async function getAllArtworks() {
-  const res = await fetch("https://api.smk.dk/api/v1/art/all_ids");
+  const res = await fetch("https://api.smk.dk/api/v1/art/search/?keys=*&offset=0&rows=100");
   const data = await res.json();
   return data.objectIDs;
 }
@@ -39,7 +39,7 @@ export async function getSingleEvent(id) {
 }
 
 export async function createEvent(data) {
-  console.log(data);
+  console.log("server:", JSON.stringify(data, null, 2));
 
   const res = await fetch("https://eksamenso.onrender.com/events", {
     method: "POST",
@@ -49,11 +49,17 @@ export async function createEvent(data) {
 
   const responseText = await res.text();
 
-  console.log("🔴 Server response:", res.status, responseText);
+  console.log("response:", res.status, responseText);
 
   if (!res.ok) {
     throw new Error("Noget gik galt under oprettelse af event");
   }
 
   return JSON.parse(responseText);
+}
+
+export async function fetchSomeArtworks() {
+  const res = await fetch("https://api.smk.dk/api/v1/art/search?keys=kunst&offset=0&rows=100");
+  const data = await res.json();
+  return data.items;
 }
