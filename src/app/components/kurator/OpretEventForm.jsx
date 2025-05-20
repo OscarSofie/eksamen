@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { opretEvent } from "@/actions/actions";
-import SearchArt from "./SearchArt";
 import SubmitButton from "./SubmitButton";
 import { useZustand } from "@/store/zustand";
 

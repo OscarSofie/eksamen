@@ -7,22 +7,29 @@ export async function getEvents() {
 }
 
 export async function getSearchResults(query) {
-  const res = await fetch(`https://api.smk.dk/api/v1/art/search?keys=${query}`);
+  const encodeURI = encodeURIComponent(query);
+  const res = await fetch(`https://api.smk.dk/api/v1/art/search?keys=${encodeURI}`);
   const data = await res.json();
   return data.items;
 }
 
 export async function getSingleArtwork(artworkIds) {
+  const query = Array.isArray(artworkIds)
+    ? artworkIds.map(encodeURIComponent).join(",")
+    : encodeURIComponent(artworkIds);
   const res = await fetch(
-    `https://api.smk.dk/api/v1/art?object_number=${artworkIds}`
+    `https://api.smk.dk/api/v1/art?object_number=${query}`
   );
   const data = await res.json();
   return data.items;
 }
 
 export async function getArtwork(objectIDs) {
+  const query = Array.isArray(objectIDs)
+    ? objectIDs.map(encodeURIComponent).join(",")
+    : encodeURIComponent(objectIDs);
   const res = await fetch(
-    `https://api.smk.dk/api/v1/art?object_number=${objectIDs}`
+    `https://api.smk.dk/api/v1/art?object_number=${query}`
   );
   const data = await res.json();
   return data;
@@ -36,8 +43,7 @@ export async function getAllArtworks() {
   return data.objectIDs;
 }
 
-export async function getSingleEvent(artworkIds) {
-  const query = Array.isArray(artworkIds) ? artworkIds.join(",") : artworkIds;
+export async function getSingleEvent(id) {
   const res = await fetch(`https://eksamenso.onrender.com/events/${id}`);
   const event = await res.json();
   return event;
@@ -84,7 +90,8 @@ export async function updateEvent(id, updatedData) {
     throw new Error('Noget gik galt under opdatering af event');
   }
 
-  return await res.json()}
+  return await res.json()
+}
 
 export async function fetchSomeArtworks() {
   const res = await fetch(

@@ -11,7 +11,7 @@ const AllArtworks = async () => {
     <>
       <ValgteVaerker />
       <SearchArt alleVaerker={vaerker} />
-      <OpretEventForm  />
+      
     </>
   );
 };
