@@ -22,7 +22,7 @@ export default function RedigerEventForm({ event }) {
         type="text"
         name="title"
         placeholder={event.title}
-        required
+      
         className="border border-gray-300 p-2 w-full"
       />
       <textarea
@@ -34,12 +34,12 @@ export default function RedigerEventForm({ event }) {
         type="text"
         name="curator"
         placeholder={event.curator}
-        required
+        
         className="border border-gray-300 p-2 w-full"
       />
       <select
         name="locationId"
-        required
+        
         className="border border-gray-300 p-2 w-full"
       >
         <option value="">{event.location?.name}</option>
@@ -49,7 +49,7 @@ export default function RedigerEventForm({ event }) {
       </select>
       <select
         name="date"
-        required
+        
         className="border border-gray-300 p-2 w-full"
       >
         <option value="">{event.date}</option>

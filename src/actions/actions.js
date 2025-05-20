@@ -40,13 +40,13 @@ export async function redigerEvent(formData) {
   const artworkIdsString = formData.get('artworkIds');
   const artworkIds = JSON.parse(artworkIdsString || '[]');
 
-  const updatedData = {
-    title,
-    description,
-    curator,
-    date,
-    locationId,
-    artworkIds,
+ const updatedData = {
+    ...(title && { title }),
+    ...(description && { description }),
+    ...(curator && { curator }),
+    ...(date && { date }),
+    ...(locationId && { locationId }),
+    artworkIds, 
   };
 
   await updateEvent(id, updatedData);
