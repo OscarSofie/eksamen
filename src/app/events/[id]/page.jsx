@@ -22,6 +22,7 @@ const SingleEvent = async ({ params }) => {
           <div
             className="static h-screen flex justify-center items-center "
             style={{ backgroundColor: art.suggested_bg_color }}
+            key={event.id}
           >
             <Image
               key={event.id}
@@ -37,7 +38,7 @@ const SingleEvent = async ({ params }) => {
           <h1 className="text-7xl font-extrabold">{event.title}</h1>
           <h2 className="max-w-[500px]">{event.description}</h2>
         </div>
-        
+
         <h1 className="pt-5 text-8xl font-bold place-self-center">
           {event.location?.address}
         </h1>
@@ -50,11 +51,12 @@ const SingleEvent = async ({ params }) => {
           <h2>Værker:</h2>
           <div className="grid-cols-3">
             {artworks.map((art) => (
-              <div className="w-fit">
+              <div className="w-fit" key={art.id}>
                 <Link href={`/artworks/${art.object_number}`}>
                   <Image
                     key={art.id}
                     src={art.image_thumbnail}
+                    alt={art.title}
                     width={400}
                     height={300}
                   />
