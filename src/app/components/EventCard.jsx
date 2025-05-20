@@ -48,11 +48,6 @@ const EventCard = async ({
           <Link href={`/secret/${event.id}`}>
             <Button variant="primary">Rediger event</Button>
           </Link>
-          {isCurator === true ? (
-            <Link href={`/secret/${event.id}`}>
-              <Button variant="primary">Rediger event</Button>
-            </Link>
-          ) : null}
           <form action={sletEvent}>
             <input type="hidden" name="eventId" value={event.id} />
             <DeleteButton>Slet event</DeleteButton>
