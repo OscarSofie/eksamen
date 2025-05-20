@@ -21,8 +21,12 @@ export async function getSingleArtwork(artworkIds) {
 }
 
 export async function getArtwork(objectIDs) {
+  const query = Array.isArray(objectIDs)
+    ? objectIDs.map(encodeURIComponent).join(",")
+    : encodeURIComponent(objectIDs);
+
   const res = await fetch(
-    `https://api.smk.dk/api/v1/art?object_number=${objectIDs}`
+    `https://api.smk.dk/api/v1/art?object_number=${query}`
   );
   const data = await res.json();
   return data;
@@ -38,7 +42,7 @@ export async function getAllArtworks() {
 
 export async function getSingleEvent(artworkIds) {
   const query = Array.isArray(artworkIds) ? artworkIds.join(",") : artworkIds;
-  const res = await fetch(`https://eksamenso.onrender.com/events/${id}`);
+  const res = await fetch(`https://eksamenso.onrender.com/events/${query}`);
   const event = await res.json();
   return event;
 }
