@@ -3,6 +3,8 @@ import { getSingleArtwork } from "@/api/page";
 import Image from "next/image";
 import Button from "./Button";
 import { SignedIn } from "@clerk/nextjs";
+import DeleteButton from "./kurator/DeleteButton";
+import { sletEvent } from "@/actions/actions";
 
 const EventCard = async ({
   event,
@@ -18,9 +20,8 @@ const EventCard = async ({
     <div className="bg-[#F5F3EC] p-4 w-xs flex flex-col ">
       <Link href={`/events/${event.id}`}>
         {artworks.map((art) => (
-          <div>
+          <div key={art.object_number}>
             <Image
-              key={event.id}
               src={art.image_thumbnail}
               alt={event.title}
               width={300}
@@ -52,6 +53,11 @@ const EventCard = async ({
               <Button variant="primary">Rediger event</Button>
             </Link>
           ) : null}
+
+          <form action={sletEvent}>
+            <input type="hidden" name="eventId" value={event.id} />
+            <DeleteButton>Slet event</DeleteButton>
+          </form>
         </SignedIn>
       </div>
     </div>

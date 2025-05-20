@@ -2,6 +2,8 @@
 
 import { redirect } from 'next/navigation';
 import { createEvent } from '@/api/page';
+import { deleteEvent } from '@/api/page';
+
 
 export async function opretEvent(formData) {
   const title = formData.get('title');
@@ -26,4 +28,11 @@ export async function opretEvent(formData) {
   const newEvent = await createEvent(data);
 
   redirect(`/events/${newEvent.id}`);
+}
+
+
+export async function sletEvent (formData) {
+  const id = formData.get("eventId");
+  await deleteEvent(id); 
+  redirect("/events");
 }

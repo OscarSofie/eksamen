@@ -1,3 +1,5 @@
+'use server'
+
 export async function getEvents() {
   const res = await fetch("https://eksamenso.onrender.com/events");
   const data = await res.json();
@@ -60,25 +62,17 @@ export async function createEvent(data) {
   return JSON.parse(responseText);
 }
 
-export async function deleteEvent(data) {
-  console.log("server:", JSON.stringify(data, null, 2));
-
-  const res = await fetch("https://eksamenso.onrender.com/events/", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
+export async function deleteEvent(id) {
+  const res = await fetch(`https://eksamenso.onrender.com/events/${id}`, {
+    method: "DELETE",
   });
-  const responseText = await res.text();
-
-  console.log("response:", res.status, responseText);
 
   if (!res.ok) {
     throw new Error("Noget gik galt under sletning af event");
   }
 
-  return JSON.parse(responseText);
+  return await res.json();
 }
-
 export async function updateEvent(id, updatedData) {
   const res = await fetch(`https://eksamenso.onrender.com/events/${id}`, {
     method: 'PATCH',
@@ -99,5 +93,7 @@ export async function fetchSomeArtworks() {
   const data = await res.json();
   return data.items;
 }
+
+
 
 

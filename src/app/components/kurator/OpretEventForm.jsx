@@ -14,7 +14,7 @@ export default function OpretEventForm() {
   return (
     <form
       action={opretEvent}
-      className="space-y-4 bg-white p-6 rounded shadow max-w-xl mx-auto"
+      className="space-y-4 bg-white p-6 shadow max-w-xl mx-auto"
     >
       <h2 className="text-xl font-semibold">Opret nyt event</h2>
 
@@ -23,13 +23,13 @@ export default function OpretEventForm() {
         name="title"
         placeholder="Titel"
         required
-        className="border border-gray-300 rounded p-2 w-full"
+        className="border border-gray-300 p-2 w-full"
       />
 
       <textarea
         name="description"
         placeholder="Beskrivelse"
-        className="border border-gray-300 rounded p-2 w-full"
+        className="border border-gray-300 p-2 w-full"
       ></textarea>
 
       <input
@@ -37,13 +37,13 @@ export default function OpretEventForm() {
         name="curator"
         placeholder="Kurator navn"
         required
-        className="border border-gray-300 rounded p-2 w-full"
+        className="border border-gray-300 p-2 w-full"
       />
 
       <select
         name="locationId"
         required
-        className="border border-gray-300 rounded p-2 w-full"
+        className="border border-gray-300 p-2 w-full"
       >
         <option value="">Vælg lokation</option>
         <option value="1">Kunsthallen A</option>
@@ -53,7 +53,7 @@ export default function OpretEventForm() {
       <select
         name="date"
         required
-        className="border border-gray-300 rounded p-2 w-full"
+        className="border border-gray-300 p-2 w-full"
       >
         <option value="">Vælg dato</option>
         {[
@@ -85,7 +85,7 @@ export default function OpretEventForm() {
         value={JSON.stringify(artworkIds)} 
       />
 
-      <SubmitButton className="bg-blue-600 text-white px-4 py-2 rounded">
+      <SubmitButton className="bg-blue-600 text-white px-4 py-2">
         Opret event
       </SubmitButton>
     </form>
