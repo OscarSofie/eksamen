@@ -4,7 +4,7 @@ import EventCard from "../components/EventCard";
 const locations = {
   1: "København",
   2: "Aarhus",
-  3: "Aalborg",
+  3: "Odense",
 };
 
 export default async function eventPage() {
