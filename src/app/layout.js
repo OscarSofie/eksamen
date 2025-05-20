@@ -1,3 +1,5 @@
+'use client'
+
 import "./globals.css";
 import Header from "./components/Header";
 import { ClerkProvider } from "@clerk/nextjs";
