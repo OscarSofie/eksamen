@@ -8,11 +8,11 @@ const AllArtworks = async () => {
   const vaerker = await fetchSomeArtworks();
 
   return (
-    <>
+    <div>
       <ValgteVaerker />
       <SearchArt alleVaerker={vaerker} />
       
-    </>
+    </div>
   );
 };
 

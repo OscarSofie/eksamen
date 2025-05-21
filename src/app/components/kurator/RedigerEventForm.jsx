@@ -21,20 +21,19 @@ export default function RedigerEventForm({ event }) {
       <input
         type="text"
         name="title"
-        placeholder={event.title}
-      
+        defaultValue={event.title}
+        
         className="border border-gray-300 p-2 w-full"
       />
       <textarea
         name="description"
-        placeholder={event.description}
+        defaultValue={event.description}
         className="border border-gray-300 p-2 w-full"
       ></textarea>
       <input
         type="text"
         name="curator"
-        placeholder={event.curator}
-        
+        defaultValue={event.curator}
         className="border border-gray-300 p-2 w-full"
       />
       <select

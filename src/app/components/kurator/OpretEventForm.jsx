@@ -16,7 +16,7 @@ export default function OpretEventForm() {
       action={opretEvent}
       className="space-y-4 bg-white p-6 shadow max-w-xl mx-auto"
     >
-      <h2 className="text-xl font-semibold">Opret nyt event</h2>
+      <h2 className="text-xl font-semibold"></h2>
 
       <input
         type="text"

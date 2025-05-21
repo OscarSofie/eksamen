@@ -9,7 +9,6 @@ import Image from "next/image";
 // SearchArt-komponent viser kunstværker og håndterer søgning og valg
 const SearchArt = ({ alleVaerker = [] }) => {
   const { artworks, addArtwork, removeArtwork } = useZustand();
-
   // Her gemmer vi det kuratoren søger på
   const [searchQuery, setsearchQuery] = useState("");
   // her vises resultaterne fra API'et
@@ -84,7 +83,7 @@ const SearchArt = ({ alleVaerker = [] }) => {
             <li key={item.object_number}>
               <Image
                 src={item.image_thumbnail || "/img/placeholder.svg"}
-                alt={item.titles?.[0]?.title|| "Artwork"}
+                alt="Artwork"
                 width={200}
                 height={150}
                 className="object-cover rounded"

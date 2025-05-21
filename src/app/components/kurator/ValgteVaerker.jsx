@@ -14,7 +14,7 @@ const ValgteVaerker = () => {
           <li key={item.object_number}>
             <Image
               src={item.image_thumbnail || "/img/placeholder.svg"}
-              alt={item.titles?.[0]?.title}
+              alt="Artwork"
               width={200}
               height={150}
               className="object-cover rounded"

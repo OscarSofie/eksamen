@@ -10,14 +10,10 @@ import ValgteVaerker from "@/app/components/kurator/ValgteVaerker";
 export default async function Page() {
   const alleVaerker = await fetchSomeArtworks();
   return (
-    <div>
-      <div className="max-w-xl mx-auto p-6">
-        <h1 className="text-2xl font-bold mb-4">Opret Event</h1>
+    <div className="flex flex-col items-center justify-center">
+      <h1 className="text-4xl font-bold mb-4 mt-6">Opret Event</h1>
+      <div className="grid grid-cols-2 items-top justify-center">
         <OpretEventForm />
-        {/*  <SearchArt alleVaerker={alleVaerker} />  */}
-      </div>
-      <div>
-        {/*   <KunstCard /> */}
         <AllArtworks />
       </div>
     </div>

@@ -40,21 +40,22 @@ export async function redigerEvent(formData) {
   const artworkIdsString = formData.get('artworkIds');
   const artworkIds = JSON.parse(artworkIdsString || '[]');
 
- const updatedData = {
-    ...(title && { title }),
-    ...(description && { description }),
-    ...(curator && { curator }),
-    ...(date && { date }),
-    ...(locationId && { locationId }),
-    artworkIds, 
-  };
+  const updatedData = {};
+
+  if (title) updatedData.title = title;
+  if (description) updatedData.description = description;
+  if (curator) updatedData.curator = curator;
+  if (date) updatedData.date = date;
+  if (locationId) updatedData.locationId = locationId;
+  if (artworkIds.length > 0) updatedData.artworkIds = artworkIds;
 
   await updateEvent(id, updatedData);
   redirect(`/events/${id}`);
 }
 
-export async function sletEvent (formData) {
+
+export async function sletEvent(formData) {
   const id = formData.get("eventId");
-  await deleteEvent(id); 
+  await deleteEvent(id);
   redirect("/events");
 }
