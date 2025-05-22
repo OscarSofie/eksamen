@@ -28,10 +28,10 @@ export default async function eventPage() {
 
         return events.length > 0 ? (
           <section key={locationId}>
-            <h1 className="text-5xl font-bold">{locations[locationId]}</h1>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+            <h1 className="text-5xl font-bold mb-4">{locations[locationId]}</h1>
+            <div className="grid grid-cols sm:grid-cols-2 md:grid-cols-3 gap-12">
               {events?.map((event) => (
-                <div key={event.id} className="hover:shadow-lg rounded-xl p-4">
+                <div key={event.id} className=" transition-transform duration-300 hover:scale-105">
                   <EventCard event={event} />
                 </div>
               ))}

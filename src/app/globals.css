@@ -2,16 +2,16 @@
 
 @layer base {
   :root {
-    --font-sans: 'Inter', sans-serif;
+    --font-sans: "Inter", sans-serif;
 
-    --color-kurator-bg: #F5F3EC;
-    --color-kurator-primary: #102E50;
-    --color-kurator-text-secondary: #7D7D99;
+    --color-kurator-bg: #f5f3ec;
+    --color-kurator-primary: #102e50;
+    --color-kurator-text-secondary: #7d7d99;
 
-    --color-public-bg: #FAF4EF;
-    --color-public-primary: #913F2E;
-    --color-public-accent: #C5A87E;
-    --color-public-text-secondary: #102E50;
+    --color-public-bg: #faf4ef;
+    --color-public-primary: #913f2e;
+    --color-public-accent: #c5a87e;
+    --color-public-text-secondary: #102e50;
 
     --text-xs: clamp(0.64rem, 0.52rem + 0.31vw, 0.8rem);
     --text-sm: clamp(0.8rem, 0.65rem + 0.4vw, 1rem);
@@ -51,8 +51,6 @@
 }
 
 @layer utilities {
-
-
   .text-xs-fluid {
     font-size: var(--text-xs);
   }
@@ -116,7 +114,7 @@
   .border-kurator-primary {
     border-color: var(--color-kurator-primary);
   }
-  
+
   .btn-kurator {
     background-color: var(--color-kurator-bg);
     color: var(--color-kurator-primary);
@@ -127,5 +125,29 @@
     background-color: var(--color-kurator-primary);
     color: var(--color-kurator-bg);
     border: solid 1px var(--color-kurator-bg);
+  }
+
+  .text-public-primary {
+    color: var(--color-public-primary);
+  }
+
+  .text-public-secondary {
+    color: var(--color-public-text-secondary);
+  }
+
+  .bg-public-bg {
+    background-color: var(--color-public-bg);
+  }
+
+  .bg-public-primary {
+    background-color: var(--color-public-primary);
+  }
+
+  .bg-public-accent {
+    background-color: var(--color-public-accent);
+  }
+
+  .border-public-primary {
+    border-color: var(--color-public-primary);
   }
 }
