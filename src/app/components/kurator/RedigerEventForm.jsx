@@ -1,55 +1,61 @@
 "use client";
 
-import { useState } from "react";
-import { redigerEvent } from "@/actions/actions";
-import SearchArt from "./SearchArt";
-import SubmitButton from "./SubmitButton";
 import { useZustand } from "@/store/zustand";
+import { redigerEvent } from "@/actions/actions";
+import SubmitButton from "./SubmitButton";
 
 export default function RedigerEventForm({ event }) {
   const { artworks } = useZustand();
   const artworkIds = artworks.map((art) => art.object_number);
-  console.log("Artwork ID:", artworkIds);
 
   return (
     <form
       action={redigerEvent}
-      className="space-y-4 bg-white p-6 shadow max-w-xl mx-auto"
+      className="sticky top-20 self-start p-6 border-3 border-[var(--color-kurator-primary)] bg-[var(--color-kurator-bg)] text-[var(--color-kurator-primary)] flex flex-col gap-4"
     >
       <input type="hidden" name="id" value={event.id} />
-      <h2 className="text-xl font-semibold">Rediger event</h2>
+
+      <h2 className="font-extrabold text-[var(--text-xl)] leading-[var(--leading-tight)] mb-2">
+        Rediger event
+      </h2>
+
       <input
         type="text"
         name="title"
         defaultValue={event.title}
-        
-        className="border border-gray-300 p-2 w-full"
+        required
+        className="border border-[var(--color-kurator-primary)] p-2 text-[var(--text-sm)] leading-[var(--leading-normal)]"
       />
+
       <textarea
         name="description"
         defaultValue={event.description}
-        className="border border-gray-300 p-2 w-full"
+        className="border border-[var(--color-kurator-primary)] p-2 text-[var(--text-sm)] leading-[var(--leading-normal)]"
       ></textarea>
+
       <input
         type="text"
         name="curator"
         defaultValue={event.curator}
-        className="border border-gray-300 p-2 w-full"
+        required
+        className="border border-[var(--color-kurator-primary)] p-2 text-[var(--text-sm)] leading-[var(--leading-normal)]"
       />
+
       <select
         name="locationId"
-        
-        className="border border-gray-300 p-2 w-full"
+        required
+        className="border border-[var(--color-kurator-primary)] p-2 text-[var(--text-sm)] leading-[var(--leading-normal)]"
       >
         <option value="">{event.location?.name}</option>
         <option value="1">Kunsthallen A</option>
         <option value="2">Galleri B</option>
-        <option value="3">Warehouse C </option>
+        <option value="3">Warehouse C</option>
       </select>
+
       <select
         name="date"
-        
-        className="border border-gray-300 p-2 w-full"
+        required
+        className="border border-[var(--color-kurator-primary)] p-2 text-[var(--text-sm)] leading-[var(--leading-normal)]"
       >
         <option value="">{event.date}</option>
         {[
@@ -74,13 +80,15 @@ export default function RedigerEventForm({ event }) {
           </option>
         ))}
       </select>
+
       <input
         type="hidden"
         name="artworkIds"
         value={JSON.stringify(artworkIds)}
       />
-      <SubmitButton className="bg-blue-600 text-white px-4 py-2">
-        Gem
+
+      <SubmitButton className="btn-kurator hover:btn-kurator text-[var(--text-sm)] px-4 py-2 font-semibold leading-[var(--leading-tight)]">
+        Gem event
       </SubmitButton>
     </form>
   );
