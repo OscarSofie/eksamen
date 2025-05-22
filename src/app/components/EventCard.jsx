@@ -33,12 +33,13 @@ const EventCard = async ({
             </div>
           ))}
         </Link>
+        <h4 className="text-xs-fluid opacity-60 mt-2">Udstilling</h4>
       </div>
 
       <div className="flex flex-col text-sm sm:gap-3 mt-0">
-        <h4>Udstilling </h4>
+        
         <Link href={`/events/${event.id}`}>
-          <h1 className="text-2xl-fluid font-medium text-kurator-primary leading-tight">
+          <h1 className="text-2xl-fluid text-kurator-primary leading-tight">
             {event.title}
           </h1>
 

@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <html lang="da" className={inter.variable}>
-        <body className="bg-[#F5F3EC]">
+        <body className="px-6">
           <Header />
           {children}
         </body>

@@ -22,7 +22,7 @@ export default async function eventPage() {
   });
 
   return (
-    <main className="space-y-12 p-6">
+    <div className="space-y-12 p-6">
       {[1, 2, 3].map((locationId) => {
         const events = eventGroups[locationId];
 
@@ -39,6 +39,6 @@ export default async function eventPage() {
           </section>
         ) : null;
       })}
-    </main>
+    </div>
   );
 }

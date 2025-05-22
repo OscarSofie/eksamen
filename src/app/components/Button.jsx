@@ -1,10 +1,12 @@
-
 const Button = ({ variant = "primary", children, ...props }) => {
-  const base = "text-sm font-semibold px-4 py-2 border cursor-pointer";
+  const base =
+    "text-sm font-semibold px-4 py-2 border cursor-pointer transition-colors duration-200";
 
   const variants = {
-    primary: "bg-kurator-primary text-kurator-bg border-kurator-primary hover:bg-kurator-bg hover:text-kurator-primary",
-    secondary: "bg-transparent text-kurator-primary border-kurator-primary hover:bg-kurator-primary hover:text-kurator-bg",
+    primary:
+      "bg-[var(--color-kurator-primary)] text-[var(--color-kurator-bg)] border-[var(--color-kurator-primary)] hover:bg-[var(--color-kurator-bg)] hover:text-[var(--color-kurator-primary)] hover:border-[var(--color-kurator-primary)]",
+    secondary:
+      "bg-transparent text-[var(--color-kurator-primary)] border-[var(--color-kurator-primary)] hover:bg-[var(--color-kurator-primary)] hover:text-[var(--color-kurator-bg)]",
   };
 
   return (

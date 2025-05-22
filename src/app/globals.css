@@ -4,7 +4,7 @@
   :root {
     --font-sans: "Inter", sans-serif;
 
-    --color-kurator-bg: #f5f3ec;
+    --color-kurator-bg: white;
     --color-kurator-primary: #102e50;
     --color-kurator-text-secondary: #7d7d99;
 
@@ -127,27 +127,5 @@
     border: solid 1px var(--color-kurator-bg);
   }
 
-  .text-public-primary {
-    color: var(--color-public-primary);
-  }
 
-  .text-public-secondary {
-    color: var(--color-public-text-secondary);
-  }
-
-  .bg-public-bg {
-    background-color: var(--color-public-bg);
-  }
-
-  .bg-public-primary {
-    background-color: var(--color-public-primary);
-  }
-
-  .bg-public-accent {
-    background-color: var(--color-public-accent);
-  }
-
-  .border-public-primary {
-    border-color: var(--color-public-primary);
-  }
 }
