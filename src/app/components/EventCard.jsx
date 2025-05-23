@@ -17,7 +17,7 @@ const EventCard = async ({
   const artworks = await getSingleArtwork(event.artworkIds[0]);
 
   return (
-    <div className=" sm:flex sm:flex-col grid grid-cols-2 gap-5 ">
+    <div className=" sm:flex sm:flex-col grid grid-cols-2 gap-5 px-4">
       
       <div>
         <Link href={`/events/${event.id}`}>
@@ -39,7 +39,7 @@ const EventCard = async ({
       <div className="flex flex-col text-sm sm:gap-3 mt-0">
         
         <Link href={`/events/${event.id}`}>
-          <h1 className="text-2xl-fluid text-kurator-primary leading-tight">
+          <h1 className="text-xl-fluid text-kurator-primary leading-tight">
             {event.title}
           </h1>
 

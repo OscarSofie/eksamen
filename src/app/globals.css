@@ -8,10 +8,7 @@
     --color-kurator-primary: #102e50;
     --color-kurator-text-secondary: #7d7d99;
 
-    --color-public-bg: #faf4ef;
-    --color-public-primary: #913f2e;
-    --color-public-accent: #c5a87e;
-    --color-public-text-secondary: #102e50;
+    --bg-public-bg: url("/img/background-art.svg") no-repeat center center fixed;
 
     --text-xs: clamp(0.64rem, 0.52rem + 0.31vw, 0.8rem);
     --text-sm: clamp(0.8rem, 0.65rem + 0.4vw, 1rem);
@@ -126,6 +123,7 @@
     color: var(--color-kurator-bg);
     border: solid 1px var(--color-kurator-bg);
   }
+
 
 
 }

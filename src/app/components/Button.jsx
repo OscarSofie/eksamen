@@ -1,6 +1,6 @@
 const Button = ({ variant = "primary", children, ...props }) => {
   const base =
-    "text-sm font-semibold px-4 py-2 border cursor-pointer transition-colors duration-200";
+    "text-xs-fluid font-semibold px-4 py-2 border cursor-pointer transition-colors duration-200";
 
   const variants = {
     primary:
