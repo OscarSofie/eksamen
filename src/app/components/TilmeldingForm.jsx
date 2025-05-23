@@ -3,28 +3,46 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function TilmeldingForm({ event, availableTickets }) {
+import { bookTickets } from "@/api/page";
+import SubmitButton from "./kurator/SubmitButton";
+
+export default function TilmeldingForm({ event }) {
   const [selectedTickets, setSelectedTickets] = useState(1);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+  const [booked, setBooked] = useState(event.bookedTickets);
+  const available = event.totalTickets - booked;
   const router = useRouter();
 
   const generateOrderId = () => {
     return Math.random().toString(36).substring(2, 10).toUpperCase();
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (mail) => {
+    mail.preventDefault();
     if (!email.includes("@")) {
       setError("Indtast en gyldig emailadresse");
       return;
     }
+    const newBookedTickets = booked + selectedTickets;
 
-    const orderId = generateOrderId();
+    router.refresh();
 
-    router.push(
-      `/bestilling?email=${encodeURIComponent(email)}&orderId=${orderId}`
-    );
+    try {
+      await bookTickets(event.id, {
+        bookedTickets: newBookedTickets,
+      });
+
+      setBooked(newBookedTickets);
+
+      const orderId = generateOrderId();
+
+      router.push(
+        `/bestilling?email=${encodeURIComponent(email)}&orderId=${orderId}`
+      );
+    } catch (err) {
+      setError("Der opstod en fejl. Prøv igen senere.");
+    }
   };
 
   return (
@@ -38,17 +56,17 @@ export default function TilmeldingForm({ event, availableTickets }) {
         <strong>Dato:</strong> {event.date}
       </p>
       <p>
-        <strong>Ledige billetter:</strong> {availableTickets}
+        <strong>Ledige billetter:</strong> {available}
       </p>
 
-      {availableTickets > 0 ? (
+      {available > 0 ? (
         <form className="space-y-4" onSubmit={handleSubmit}>
           <label className="block">
             Antal billetter:
             <input
               type="number"
               min="1"
-              max={availableTickets}
+              max={available}
               value={selectedTickets}
               onChange={(e) => setSelectedTickets(Number(e.target.value))}
               className="ml-2 border px-2 py-1 w-20"
@@ -68,10 +86,9 @@ export default function TilmeldingForm({ event, availableTickets }) {
 
           {error && <p className="text-red-600">{error}</p>}
 
-          <button type="submit" className=" border px-4 py-2 ">
-            Bekræft Tilmelding ({selectedTickets} billet
-            {selectedTickets > 1 ? "ter" : ""})
-          </button>
+          <SubmitButton className="border p-3 hover:bg-blue-100">
+            Bekræft tilmelding
+          </SubmitButton>
         </form>
       ) : (
         <p className="text-red-600 font-bold">
