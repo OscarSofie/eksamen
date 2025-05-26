@@ -73,20 +73,7 @@ const Header = ({ isCurator }) => {
                 Udstillinger
               </Link>
             </li>
-            <li>
-              {/* Dropdown elementer som links i mobile */}
-              <div className="flex flex-col gap-2">
-                <Link href="/events?location=1" onClick={() => setIsOpen(false)}>
-                  København
-                </Link>
-                <Link href="/events?location=2" onClick={() => setIsOpen(false)}>
-                  Aarhus
-                </Link>
-                <Link href="/events?location=3" onClick={() => setIsOpen(false)}>
-                  Odense
-                </Link>
-              </div>
-            </li>
+
             <li>
               <Link href="/about" onClick={() => setIsOpen(false)}>
                 Om SMK

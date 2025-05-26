@@ -1,4 +1,4 @@
-import OpretEventForm from "../../components/kurator/OpretEventForm";
+import OpretEventForm from "@/app/components/kurator/OpretEventForm";
 import AllArtworks from "@/app/components/kurator/AllArtworks";
 
 export default function Page() {

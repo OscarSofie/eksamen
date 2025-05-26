@@ -30,6 +30,7 @@ const SearchArt = ({ alleVaerker = [] }) => {
     const isSelected = artworks.some((art) => art.object_number === id);
     isSelected ? removeArtwork(id) : addArtwork(item);
   };
+  
 
   const kunstListe = searchQuery ? results : alleVaerker;
   const antalSider = Math.ceil(kunstListe.length / prSide);
