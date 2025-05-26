@@ -36,12 +36,12 @@ export default async function eventPage() {
 
         return events.length > 0 ? (
           <div key={locationId}>
-            <div className="flex flex-row justify-between ">
-              <h1 className="text-2xl-fluid font-bold mb-4">
+            <div className="flex flex-row justify-between mb-4 border-b-4 border-(--color-public-text-secondary) ">
+              <h1 className=" text-2xl-fluid font-extrabold ">
                 {locations[locationId]}
               </h1>
-              
             </div>
+
             <div className="grid grid-cols md:grid-cols-2 lg:grid-cols-3 gap-12">
               {events?.map((event) => (
                 <div

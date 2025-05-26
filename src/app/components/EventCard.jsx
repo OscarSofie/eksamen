@@ -32,7 +32,9 @@ const EventCard = async ({
             </div>
           ))}
         </Link>
-        <h4 className="text-xs-fluid opacity-60 mt-2">Udstilling</h4>
+        <h4 className="text-xs-fluid text-(--color-public-text-secondary)  mt-2">
+          Udstilling
+        </h4>
       </div>
 
       <div className="flex flex-col text-sm sm:gap-3 mt-0">
