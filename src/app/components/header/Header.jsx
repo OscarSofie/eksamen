@@ -51,8 +51,8 @@ const Header = ({ isCurator }) => {
           <SignedIn>
             <Link
               href="/secret/opret"
-              onClick={(load) => {
-                load.preventDefault();
+              onNavigate={(e) => {
+                e.preventDefault();
                 window.location.href = "/secret/opret";
               }}
             >
