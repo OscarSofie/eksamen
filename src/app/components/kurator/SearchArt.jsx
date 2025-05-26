@@ -26,13 +26,14 @@ const SearchArt = ({ alleVaerker = [] }) => {
   };
 
   const klikCheckbox = (item) => {
-    const id = item.object_number;
+    const id = encodeURIComponent(item.object_number);
     const isSelected = artworks.some((art) => art.object_number === id);
     isSelected ? removeArtwork(id) : addArtwork(item);
   };
-  
 
-  const kunstListe = searchQuery ? results : alleVaerker;
+  const kunstListe = (searchQuery ? results : alleVaerker).filter(
+    (item) => item.image_thumbnail
+  );
   const antalSider = Math.ceil(kunstListe.length / prSide);
   const side = kunstListe.slice((page - 1) * prSide, page * prSide);
 
@@ -54,11 +55,13 @@ const SearchArt = ({ alleVaerker = [] }) => {
         </button>
       </div>
 
-
       {kunstListe.length > 0 && (
         <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {side.map((item) => (
-            <li key={item.object_number} className="flex flex-col">
+            <li
+              key={encodeURIComponent(item.object_number)}
+              className="flex flex-col"
+            >
               <div className="relative w-full aspect-square overflow-hidden border border-kurator-primary">
                 <Image
                   src={item.image_thumbnail || "/img/placeholder.svg"}
@@ -71,12 +74,13 @@ const SearchArt = ({ alleVaerker = [] }) => {
                   <input
                     type="checkbox"
                     checked={artworks.some(
-                      (art) => art.object_number === item.object_number
+                      (art) =>
+                        art.object_number ===
+                        encodeURIComponent(item.object_number)
                     )}
-                        onChange={() => klikCheckbox(item)}
-                    className="w-4 h-4 sm:w-6 sm:h-6 cursor-pointer border border-kurator-primary "   
+                    onChange={() => klikCheckbox(item)}
+                    className="w-4 h-4 sm:w-6 sm:h-6 cursor-pointer border border-kurator-primary "
                   />
-                 
                 </label>
               </div>
 
