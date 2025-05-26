@@ -66,6 +66,9 @@ const SingleEvent = async ({ params }) => {
               </div>
             ))}
           </div>
+          <Link href={`/tilmelding/${event.id}`}>
+            <button event={event}>Tilmeld</button>
+          </Link>
         </div>
       </div>
     </div>
