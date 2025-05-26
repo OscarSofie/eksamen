@@ -2,12 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import Button from "../Button";
 
@@ -27,7 +22,6 @@ const Header = ({ isCurator }) => {
           <div className="text-4xl font-extrabold">SMK.</div>
         </Link>
 
-   
         <button
           className="sm:hidden text-2xl focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
@@ -36,7 +30,6 @@ const Header = ({ isCurator }) => {
           ☰
         </button>
 
-     
         <ul className="hidden sm:flex gap-8 items-center">
           <li>
             <Link href="/events" className="hover:text-kurator-secondary">
@@ -56,7 +49,13 @@ const Header = ({ isCurator }) => {
             <SignInButton className="border border-kurator-primary px-3 py-1" />
           </SignedOut>
           <SignedIn>
-            <Link href="/secret/opret">
+            <Link
+              href="/secret/opret"
+              onClick={(load) => {
+                load.preventDefault();
+                window.location.href = "/secret/opret";
+              }}
+            >
               <Button variant="secondary">Opret Event</Button>
             </Link>
             <UserButton />
@@ -64,7 +63,6 @@ const Header = ({ isCurator }) => {
         </div>
       </div>
 
- 
       {isOpen && (
         <div className="sm:hidden px-4 pb-4 space-y-4">
           <ul className="flex flex-col gap-4">
