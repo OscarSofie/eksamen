@@ -1,35 +1,34 @@
 "use client";
 
-import { useState } from "react";
-import { opretEvent } from "@/actions/actions";
-import SearchArt from "./SearchArt";
-import SubmitButton from "./SubmitButton";
 import { useZustand } from "@/store/zustand";
+import { opretEvent } from "@/actions/actions";
+import SubmitButton from "./SubmitButton";
 
 export default function OpretEventForm() {
   const { artworks } = useZustand();
   const artworkIds = artworks.map((art) => art.object_number);
-  console.log("Artwork ID:", artworkIds);
 
   return (
     <form
       action={opretEvent}
-      className="space-y-4 bg-white p-6 shadow max-w-xl mx-auto"
+      className="sticky top-0 bottom-2 self-start p-6 border-3 border-[var(--color-kurator-primary)] bg-[var(--color-kurator-bg)] text-[var(--color-kurator-primary)] flex flex-col  gap-4"
     >
-      <h2 className="text-xl font-semibold">Opret nyt event</h2>
+      <h2 className="font-extrabold text-[var(--text-xl)] leading-[var(--leading-tight)] mb-2">
+        Opret event
+      </h2>
 
       <input
         type="text"
         name="title"
         placeholder="Titel"
         required
-        className="border border-gray-300 p-2 w-full"
+        className="border border-[var(--color-kurator-primary)] p-2 text-[var(--text-sm)] leading-[var(--leading-normal)]"
       />
 
       <textarea
         name="description"
         placeholder="Beskrivelse"
-        className="border border-gray-300 p-2 w-full"
+        className="border border-[var(--color-kurator-primary)] p-2 text-[var(--text-sm)] leading-[var(--leading-normal)]"
       ></textarea>
 
       <input
@@ -37,13 +36,13 @@ export default function OpretEventForm() {
         name="curator"
         placeholder="Kurator navn"
         required
-        className="border border-gray-300 p-2 w-full"
+        className="border border-[var(--color-kurator-primary)] p-2 text-[var(--text-sm)] leading-[var(--leading-normal)]"
       />
 
       <select
         name="locationId"
         required
-        className="border border-gray-300 p-2 w-full"
+        className="border border-[var(--color-kurator-primary)] p-2 text-[var(--text-sm)] leading-[var(--leading-normal)]"
       >
         <option value="">Vælg lokation</option>
         <option value="1">Kunsthallen A</option>
@@ -53,7 +52,7 @@ export default function OpretEventForm() {
       <select
         name="date"
         required
-        className="border border-gray-300 p-2 w-full"
+        className="border border-[var(--color-kurator-primary)] p-2 text-[var(--text-sm)] leading-[var(--leading-normal)]"
       >
         <option value="">Vælg dato</option>
         {[
@@ -82,10 +81,10 @@ export default function OpretEventForm() {
       <input
         type="hidden"
         name="artworkIds"
-        value={JSON.stringify(artworkIds)} 
+        value={JSON.stringify(artworkIds)}
       />
 
-      <SubmitButton className="bg-blue-600 text-white px-4 py-2">
+      <SubmitButton className="btn-kurator hover:btn-kurator text-[var(--text-sm)] px-4 py-2 font-semibold leading-[var(--leading-tight)]">
         Opret event
       </SubmitButton>
     </form>

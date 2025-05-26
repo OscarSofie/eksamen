@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useFormStatus } from "react-dom";
 
@@ -8,9 +8,9 @@ export default function DeleteButton({ children, ...props }) {
   return (
     <button
       type="submit"
-      className="bg-red-600 text-white px-4 py-2 rounded mt-4"
       disabled={pending}
       {...props}
+      className="text-xs-fluid font-semibold px-4 py-2 border border-red-600 text-red-600 hover:bg-red-600 hover:text-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {pending ? "Sletter..." : children}
     </button>

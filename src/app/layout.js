@@ -1,5 +1,5 @@
 import "./globals.css";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import { ClerkProvider } from "@clerk/nextjs";
 import Head from "next/head";
 
@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <html lang="da" className={inter.variable}>
-        <body className="bg-[#F5F3EC]">
+        <body className="px-6 bg-kurator-bg text-kurator-text">
           <Header />
           {children}
         </body>

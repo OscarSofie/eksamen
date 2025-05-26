@@ -70,6 +70,7 @@ export async function deleteEvent(id) {
   const res = await fetch(`https://eksamenso.onrender.com/events/${id}`, {
     method: "DELETE",
   });
+  
 
   if (!res.ok) {
     throw new Error("Noget gik galt under sletning af event");
@@ -88,7 +89,9 @@ export async function updateEvent(id, updatedData) {
     throw new Error('Noget gik galt under opdatering af event');
   }
 
-  return await res.json()}
+
+  return await res.json();
+}
 
 export async function fetchSomeArtworks() {
   const res = await fetch(

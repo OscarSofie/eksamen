@@ -17,42 +17,61 @@ const EventCard = async ({
   const artworks = await getSingleArtwork(event.artworkIds[0]);
 
   return (
-    <div className="bg-[#F5F3EC] p-4 w-xs flex flex-col ">
-      <Link href={`/events/${event.id}`}>
-        {artworks.map((art) => (
-          <div key={art.object_number}>
-            <Image
-              src={art.image_thumbnail}
-              alt={event.title}
-              width={300}
-              height={400}
-              className="w-full h-auto"
-            ></Image>
-          </div>
-        ))}
-
-        <h1 className="text-4xl font-semibold mt-3 text-[#000342]">
-          {event.title}
-        </h1>
-        <h2 className="text-xs text-[#000342] opacity-50 mt-3">{event.date}</h2>
-        <p className="text-sm text-[#000342] mt-5 font-light">
-          {event.description}
-        </p>
-      </Link>
+    <div className=" sm:flex sm:flex-col grid grid-cols-2 gap-5 px-4">
+      
       <div>
         <Link href={`/events/${event.id}`}>
-          <Button variant="secondary">Læs mere om udstillingen</Button>
+          {artworks.map((art) => (
+            <div key={art.object_number}>
+              <Image
+                src={art.image_thumbnail}
+                alt={event.title}
+                width={200}
+                height={200}
+                className="w-full aspect-square overflow-hidden object-cover"
+              />
+            </div>
+          ))}
+        </Link>
+        <h4 className="text-xs-fluid opacity-60 mt-2">Udstilling</h4>
+      </div>
+
+      <div className="flex flex-col text-sm sm:gap-3 mt-0">
+        
+        <Link href={`/events/${event.id}`}>
+          <h1 className="text-xl-fluid text-kurator-primary leading-tight">
+            {event.title}
+          </h1>
+
+          <h2 className="text-sm-fluid text-kurator-primary opacity-60 mt-1">
+            {event.date}
+          </h2>
+
+          <p className="text-kurator-primary font-light mt-4 leading-relaxed">
+            {event.description}
+          </p>
         </Link>
 
-        <SignedIn>
-          <Link href={`/secret/${event.id}`}>
-            <Button variant="primary">Rediger event</Button>
+        <div className="flex flex-col gap-4 mt-4">
+          <Link href={`/events/${event.id}`}>
+            <Button variant="secondary">Læs mere om udstillingen</Button>
           </Link>
-          <form action={sletEvent}>
-            <input type="hidden" name="eventId" value={event.id} />
-            <DeleteButton>Slet event</DeleteButton>
-          </form>
-        </SignedIn>
+
+          <div className="flex lg:flex-row flex-col gap-4">
+            <SignedIn>
+              <Link href={`/secret/${event.id}`}>
+                <Button variant="primary">Rediger event</Button>
+              </Link>
+
+              {isCurator !== true && (
+                <form action={sletEvent}>
+                  <input type="hidden" name="eventId" value={event.id} />
+                  <DeleteButton>Slet event</DeleteButton>
+                </form>
+              )}
+            </SignedIn>
+          </div>
+        </div>
       </div>
     </div>
   );

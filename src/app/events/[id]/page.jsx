@@ -49,9 +49,9 @@ const SingleEvent = async ({ params }) => {
         <p>{event.artworkIds}</p>
         <div className="">
           <h2>Værker:</h2>
-          <div className="grid-cols-3">
+          <div className="grid grid-cols-3">
             {artworks.map((art) => (
-              <div className="w-fit" key={art.id}>
+              <div className="transition-transform duration-300 hover:scale-105" key={art.id}>
                 <Link href={`/artworks/${art.object_number}`}>
                   <Image
                     key={art.id}
@@ -59,8 +59,9 @@ const SingleEvent = async ({ params }) => {
                     alt={art.title}
                     width={400}
                     height={300}
+                    className="aspect-square overflow-hidden "
                   />
-                  <h1>{art.object_number}</h1>
+                  <h1 className="text-md-fluid">{art.title}</h1>
                 </Link>
               </div>
             ))}
