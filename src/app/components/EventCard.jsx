@@ -18,7 +18,6 @@ const EventCard = async ({
 
   return (
     <div className=" sm:flex sm:flex-col grid grid-cols-2 gap-5 px-4">
-      
       <div>
         <Link href={`/events/${event.id}`}>
           {artworks.map((art) => (
@@ -37,7 +36,6 @@ const EventCard = async ({
       </div>
 
       <div className="flex flex-col text-sm sm:gap-3 mt-0">
-        
         <Link href={`/events/${event.id}`}>
           <h1 className="text-xl-fluid text-kurator-primary leading-tight">
             {event.title}
@@ -63,12 +61,10 @@ const EventCard = async ({
                 <Button variant="primary">Rediger event</Button>
               </Link>
 
-              {isCurator !== true && (
-                <form action={sletEvent}>
-                  <input type="hidden" name="eventId" value={event.id} />
-                  <DeleteButton>Slet event</DeleteButton>
-                </form>
-              )}
+              <form action={sletEvent}>
+                <input type="hidden" name="eventId" value={event.id} />
+                <DeleteButton>Slet event</DeleteButton>
+              </form>
             </SignedIn>
           </div>
         </div>
