@@ -50,7 +50,7 @@ const Header = ({ isCurator }) => {
           </li>
         </ul>
 
-        {/* Desktop user actions */}
+        
         <div className="hidden sm:flex items-center gap-4">
           <SignedOut>
             <SignInButton className="border border-kurator-primary px-3 py-1" />
