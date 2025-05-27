@@ -133,3 +133,30 @@ export async function bookTickets(id, updatedTickets) {
 
   return await res.json();
 }
+
+import nodemailer from "nodemailer";
+
+export async function POST(req) {
+  const { email, orderId } = await req.json();
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  });
+
+  try {
+    await transporter.sendMail({
+      from: `"BilletService" <${process.env.GMAIL_USER}>`,
+      to: email,
+      subject: "Tak for din tilmelding!",
+      html: `<h2>Du er tilmeldt</h2><p>Ordrenummer: <strong>${orderId}</strong></p>`,
+    });
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
+  } catch (error) {
+    console.error("Mailfejl:", error);
+    return new Response(JSON.stringify({ error: "Mailfejl" }), { status: 500 });
+  }
+}
