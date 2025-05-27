@@ -23,11 +23,13 @@ export default async function eventPage() {
   });
 
   return (
-    <div className="space-y-12 p-6 bg-kurator-bg">
-      <div className="flex flex-row justify-between ">
-        <h1 className="text-3xl-fluid font-extrabold leading-tight text-left">
+    <div className="space-y-12 p-6 ">
+      <div className="flex flex-row justify-between">
+        <h1 className="text-3xl-fluid font-extrabold mx-auto leading-tight ">
           Udstillinger
         </h1>
+      </div>
+      <div className="place-self-end ">
         <DropdownLocations />
       </div>
 
@@ -36,12 +38,14 @@ export default async function eventPage() {
 
         return events.length > 0 ? (
           <div key={locationId}>
-            <div className="flex flex-row justify-between ">
-              <h1 className="text-2xl-fluid font-bold mb-4">
+            <div className="  w-fit  ">
+              <h1 className=" w-fit text-2xl-fluid font-extrabold ">
                 {locations[locationId]}
               </h1>
-              
             </div>
+
+            <hr className="my-8 border-t-4 border-(--color-public-text-secondary)" />
+
             <div className="grid grid-cols md:grid-cols-2 lg:grid-cols-3 gap-12">
               {events?.map((event) => (
                 <div

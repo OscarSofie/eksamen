@@ -49,30 +49,29 @@ const SingleEvent = async ({ params }) => {
           <span className="hidden sm:inline">|</span>
           <span>{event.location?.address}</span>
         </div>
-      </section>
-
-      {/* VÆRKER */}
-      <section className="px-6 py-12 bg-kurator-bg">
-        <h3 className="text-lg-fluid font-semibold mb-6 pl-6">Fremhævede værker:</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-          {artworks.map((art) => (
-            <Link
-              href={`/artworks/${art.object_number}`}
-              key={art.id}
-              className="transition-transform hover:scale-105"
-            >
-              <Image
-                src={art.image_thumbnail}
-                alt={art.title}
-                width={300}
-                height={300}
-                className="aspect-square object-cover border border-kurator-primary"
-              />
-              <h4 className="mt-2 text-sm-fluid font-semibold text-center">
-                {art.title}
-              </h4>
-            </Link>
-          ))}
+        <p>{event.artworkIds}</p>
+        <div className="">
+          <h2>Værker:</h2>
+          <div className="grid grid-cols-3">
+            {artworks.map((art) => (
+              <div className="transition-transform duration-300 hover:scale-105" key={art.id}>
+                <Link href={`/artworks/${art.object_number}`}>
+                  <Image
+                    key={art.id}
+                    src={art.image_thumbnail}
+                    alt={art.title}
+                    width={400}
+                    height={300}
+                    className="aspect-square overflow-hidden "
+                  />
+                  <h1 className="text-md-fluid">{art.title}</h1>
+                </Link>
+              </div>
+            ))}
+          </div>
+          <Link href={`/tilmelding/${event.id}`}>
+            <button event={event}>Tilmeld</button>
+          </Link>
         </div>
       </section>
 

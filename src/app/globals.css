@@ -4,9 +4,13 @@
   :root {
     --font-sans: "Inter", sans-serif;
 
-    --color-kurator-bg: #CFCEC5;
+    --color-kurator-bg: #cfcec5;
     --color-kurator-primary: #102e50;
     --color-kurator-text-secondary: #7d7d99;
+
+    --color-public-bg: #dadada;
+    --color-public-primary: #14214f;
+    --color-public-text-secondary: #f1362b;
 
     --bg-public-bg: url("/img/background-art.svg") no-repeat center center fixed;
 
@@ -27,7 +31,7 @@
   html {
     font-family: var(--font-sans);
     background-color: var(--color-public-bg);
-    color: var(--color-public-text-secondary);
+    color: var(--color-public-primary);
     font-size: var(--text-base);
     line-height: var(--leading-normal);
   }
@@ -39,7 +43,7 @@
 
   .public-wrapper {
     background-color: var(--color-public-bg);
-    color: var(--color-public-primary);
+    color: var(--color-public-text-secondary);
   }
 
   button {
@@ -123,7 +127,4 @@
     color: var(--color-kurator-bg);
     border: solid 1px var(--color-kurator-bg);
   }
-
-
-
 }

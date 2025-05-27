@@ -1,4 +1,4 @@
-'use server'
+"use server";
 
 export async function getEvents() {
   const res = await fetch("https://eksamenso.onrender.com/events");
@@ -70,7 +70,6 @@ export async function deleteEvent(id) {
   const res = await fetch(`https://eksamenso.onrender.com/events/${id}`, {
     method: "DELETE",
   });
-  
 
   if (!res.ok) {
     throw new Error("Noget gik galt under sletning af event");
@@ -80,15 +79,14 @@ export async function deleteEvent(id) {
 }
 export async function updateEvent(id, updatedData) {
   const res = await fetch(`https://eksamenso.onrender.com/events/${id}`, {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(updatedData),
   });
 
   if (!res.ok) {
-    throw new Error('Noget gik galt under opdatering af event');
+    throw new Error("Noget gik galt under opdatering af event");
   }
-
 
   return await res.json();
 }
@@ -101,6 +99,37 @@ export async function fetchSomeArtworks() {
   return data.items;
 }
 
+// export async function bookTickets(id, updatedTickets) {
+//   const res = await fetch(`https://eksamenso.onrender.com/events/${id}`, {
+//     method: "PATCH",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(updatedTickets),
+//   });
 
+//   if (!res.ok) {
+//     throw new Error("Noget gik galt");
+//   }
+//   return await res.json();
+// }
 
+export async function bookTickets(id, updatedTickets) {
+  if (typeof updatedTickets.bookedTickets !== "number") {
+    throw new Error("bookedTickets skal være et tal");
+  }
 
+  const res = await fetch(`https://eksamenso.onrender.com/events/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ bookedTickets: updatedTickets.bookedTickets }),
+  });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    console.error("Fejl fra server:", errorText);
+    throw new Error("Kunne ikke opdatere antal billetter.");
+  }
+
+  return await res.json();
+}

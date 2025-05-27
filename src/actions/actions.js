@@ -1,18 +1,18 @@
-'use server';
+"use server";
 
-import { redirect } from 'next/navigation';
-import { createEvent } from '@/api/page';
-import { deleteEvent } from '@/api/page';
-import { updateEvent } from '@/api/page';
+import { redirect } from "next/navigation";
+import { createEvent } from "@/api/page";
+import { deleteEvent } from "@/api/page";
+import { updateEvent } from "@/api/page";
 
 export async function opretEvent(formData) {
-  const title = formData.get('title');
-  const description = formData.get('description');
-  const curator = formData.get('curator');
-  const date = formData.get('date');
-  const locationId = formData.get('locationId');
-  const artworkIdsString = formData.get('artworkIds');
-  const artworkIds = JSON.parse(artworkIdsString || '[]');
+  const title = formData.get("title");
+  const description = formData.get("description");
+  const curator = formData.get("curator");
+  const date = formData.get("date");
+  const locationId = formData.get("locationId");
+  const artworkIdsString = formData.get("artworkIds");
+  const artworkIds = JSON.parse(artworkIdsString || "[]");
 
   const data = {
     title,
@@ -23,7 +23,7 @@ export async function opretEvent(formData) {
     artworkIds,
   };
 
-  console.log('Sender data til createEvent:', artworkIds);
+  console.log("Sender data til createEvent:", artworkIds);
 
   const newEvent = await createEvent(data);
 
@@ -31,14 +31,14 @@ export async function opretEvent(formData) {
 }
 
 export async function redigerEvent(formData) {
-  const id = formData.get('id');
-  const title = formData.get('title');
-  const description = formData.get('description');
-  const curator = formData.get('curator');
-  const date = formData.get('date');
-  const locationId = formData.get('locationId');
-  const artworkIdsString = formData.get('artworkIds');
-  const artworkIds = JSON.parse(artworkIdsString || '[]');
+  const id = formData.get("id");
+  const title = formData.get("title");
+  const description = formData.get("description");
+  const curator = formData.get("curator");
+  const date = formData.get("date");
+  const locationId = formData.get("locationId");
+  const artworkIdsString = formData.get("artworkIds");
+  const artworkIds = JSON.parse(artworkIdsString || "[]");
 
   const updatedData = {};
 
@@ -53,9 +53,9 @@ export async function redigerEvent(formData) {
   redirect(`/events/${id}`);
 }
 
-
 export async function sletEvent(formData) {
   const id = formData.get("eventId");
+  await deleteEvent(id);
   await deleteEvent(id);
   redirect("/events");
 }
