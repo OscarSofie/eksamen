@@ -15,7 +15,6 @@ const SingleEvent = async ({ params }) => {
 
   return (
     <div className="bg-kurator-bg text-kurator-primary">
-      {/* HERO */}
       {artworkHero.map((art) => (
         <div
           className="relative h-[85vh] w-full flex items-center justify-start pl-12"
@@ -39,7 +38,7 @@ const SingleEvent = async ({ params }) => {
         </div>
       ))}
 
-      {/* INFO */}
+
       <section className="pl-12 py-12 bg-white text-kurator-primary">
         <h2 className="text-3xl-fluid font-extrabold mb-4">
           {event.location?.name}
@@ -74,8 +73,6 @@ const SingleEvent = async ({ params }) => {
           </Link>
         </div>
       </section>
-
-      {/* PRIS OG KNAP */}
       <div className="pl-12 py-12 bg-white text-kurator-primary">
         <p className="text-md-fluid font-semibold mb-4">200 kr pr billet</p>
         <button className="border border-kurator-primary px-4 py-2 font-semibold hover:bg-kurator-primary hover:text-white transition text-sm-fluid">
