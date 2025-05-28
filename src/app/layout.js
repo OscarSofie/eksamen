@@ -1,7 +1,8 @@
 import "./globals.css";
-import Header from "./components/header/Header";
+import Header from "./components/layout/Header";
 import { ClerkProvider } from "@clerk/nextjs";
 import Head from "next/head";
+import Footer from "./components/layout/Footer";
 
 import { Inter } from "next/font/google";
 
@@ -18,14 +19,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-      <html lang="da" className={inter.variable}>
-        <body className="px-6 bg-(--color-public-bg) text-kurator-text">
-          <Header />
-          {children}
+      <html lang="da">
+        <body>
+        <Header />
+          <div className="grid-wrapper">
+            {children}
+          </div>
         </body>
+        <Footer />
       </html>
     </ClerkProvider>
   );

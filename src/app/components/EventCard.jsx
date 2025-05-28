@@ -54,7 +54,7 @@ const EventCard = async ({
 
         <div className="flex flex-col gap-4 mt-4">
           <Link href={`/events/${event.id}`}>
-            <Button variant="secondary">Læs mere om udstillingen</Button>
+            <Button variant="primary">Læs mere om udstillingen</Button>
           </Link>
 
           <div className="flex lg:flex-row flex-col gap-4">

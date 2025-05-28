@@ -1,17 +1,32 @@
-import { getSingleArtwork } from "@/api/page";
 import Image from "next/image";
 import Link from "next/link";
+import { getEvents, getSingleArtwork } from "@/api/page";
+import Button from "@/app/components/Button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
-const SingleEvent = async ({ params }) => {
-  const { id } = params;
+export default async function Home() {
+  const allEvents = await getEvents();
 
-  const res = await fetch(`https://eksamenso.onrender.com/events/${id}`);
-  const event = await res.json();
+  const sliderEvents = allEvents
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 5);
 
-  const [artworkHero, artworks] = await Promise.all([
-    getSingleArtwork(event.artworkIds?.[0]),
-    getSingleArtwork(event.artworkIds),
-  ]);
+  const heroEvents = await Promise.all(
+    sliderEvents.map(async (event) => {
+      const [heroArt] = await getSingleArtwork(event.artworkIds?.[0]);
+      return {
+        ...event,
+        heroImage: heroArt?.image_thumbnail || "/img/placeholder.svg",
+        heroColor: heroArt?.suggested_bg_color || "#102e50",
+      };
+    })
+  );
 
   return (
     <div className="bg-kurator-bg text-kurator-primary">
@@ -81,6 +96,4 @@ const SingleEvent = async ({ params }) => {
       </div>
     </div>
   );
-};
-
-export default SingleEvent;
+}
