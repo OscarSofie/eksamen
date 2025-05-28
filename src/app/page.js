@@ -27,26 +27,26 @@ export default async function Home() {
     })
   );
 
-  const sectionBgColor = heroEvents.bgColor || "#fff"; // Brug første event som baggrund
+
 
   return (
-    <main className="w-full">
+    <main className="grid">
      
-      <div className="relative h-screen bg-img text-white">
-        <div className="relative z-10 h-full flex items-center px-6 md:px-16">
-          <div className="max-w-2xl space-y-6 border-3 border-white p-10 ml-10">
+      <div className="relative  h-screen bg-img text-white full-bleed">
+        <div className="relative mt-6 z-10 h-full flex items-center px-2 md:px-16">
+          <div className=" space-y-6 border-3 border-white p-15 ml-0 sm:ml-10">
             <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
               Statens Museum for Kunst
             </h1>
             <div className="leading-loose">
-              <p className="text-base-fluid text-white mb-3">
+              <p className="text-base-fluid text-white mb-">
                 SMK præsenterer sæsonens mest tankevækkende udstillinger
               </p>
               <p className="text-sm-fluid">
                 Oplev værker fra hele verdenen året rundt
               </p>
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-4 text-xl-fluid">
               <Link href="/events">
                 <Button variant="secondary">Se udstillinger</Button>
               </Link>
@@ -57,7 +57,7 @@ export default async function Home() {
       </div>
 
 
-      <div className="px-6 md:px-16 py-12 bg-[#7D7D99]">
+      <div className="px-6 md:px-16 py-12 bg-[#C6DDED]">
         <Carousel className="w-full">
           <CarouselContent>
             {heroEvents.map((event) => (

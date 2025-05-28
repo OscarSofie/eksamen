@@ -7,8 +7,8 @@ const Button = ({ variant = "primary", children, ...props }) => {
       bg-transparent
       text-[var(--color-kurator-primary)]
       border-[var(--color-kurator-primary)]
-      hover:bg-[var(--color-kurator-bg)]
-      hover:text-[var(--color-kurator-primary)]
+      hover:bg-[var(--color-kurator-primary)]
+      hover:text-[var(--color-kurator-bg)]
     `,
     secondary: `
       bg-transparent

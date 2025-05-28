@@ -16,7 +16,7 @@ const Burger = () => {
   const borderColor = isHome ? "border-white" : "border-kurator-primary";
 
   return (
-    <div className="sm:hidden relative z-[100]">
+    <div className="relative z-[100]">
       <button
         onClick={() => setIsOpen(true)}
         className={`text-2xl px-4 py-2 transition ${textColor} ${bgColor} ${borderColor}`}
@@ -28,12 +28,21 @@ const Burger = () => {
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/40 z-40"
+            className="fixed inset-0 bg-black/40 z-20"
             onClick={() => setIsOpen(false)}
           ></div>
-
           <div className="fixed top-0 right-0 h-screen w-1/2 bg-white shadow-lg p-6 flex flex-col gap-6 z-50">
-            <ul className="flex flex-col gap-4 text-kurator-primary text-2xl-fluid">
+
+            {/* Luk-knap */}
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute top-4 right-4 text-3xl text-kurator-primary"
+              aria-label="Luk menu"
+            >
+              ×
+            </button>
+
+            <ul className="flex flex-col gap-4 text-kurator-primary text-2xl-fluid mt-10">
               <li className="border-b pb-2">
                 <Link href="/events" onClick={() => setIsOpen(false)}>
                   Udstillinger

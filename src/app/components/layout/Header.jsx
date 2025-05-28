@@ -25,17 +25,18 @@ const Header = () => {
   const navClass = `flex items-center justify-between w-full z-50 px-4 sm:px-8 lg:px-16 py-4 ${
     isHome
       ? "absolute top-0 left-0 right-0 bg-transparent text-white"
-      : "relative bg-white text-kurator-primary border-b border-gray-200"
+      : "relative text-kurator-primary border-b border-text-kurator-primary"
   }`;
 
   return (
-    <nav className={navClass}>
-      {/* Venstre: Logo */}
+    <nav className={`${navClass} full-bleed`}>
+
+      
       <div className="text-2xl-fluid font-extrabold">
         <Link href="/">SMK<span className="text-red-500">.</span></Link>
       </div>
 
-      {/* Midten: Navigation (skjules på små skærme) */}
+    {/* 
       <ul className="hidden sm:flex gap-8 items-center text-sm-fluid font-medium">
         <li>
           <Link href="/events" className="hover:text-kurator-secondary">
@@ -66,14 +67,14 @@ const Header = () => {
         </SignedOut>
         <SignedIn>
           <Link href="/secret/opret">
-            <Button variant="secondary">Opret Event</Button>
+            <Button variant="primary">Opret Event</Button>
           </Link>
           <UserButton />
         </SignedIn>
-      </div>
+      </div> */}
 
     
-      <div className="sm:hidden">
+      <div>
         <Burger />
       </div>
     </nav>

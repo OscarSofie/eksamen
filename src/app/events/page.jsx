@@ -23,23 +23,23 @@ export default async function eventPage() {
   });
 
   return (
-    <div className="">
-      <div className="flex flex-row justify-between">
-        <h1 className="text-3xl-fluid font-extrabold leading-tight ">
+    <div className="px-4 sm:px-8 lg:px-20 py-4">
+      <div className="flex flex-row justify-betweenm mt-6 ">
+        <h1 className="text-3xl-fluid font-extrabold leading-tight underline">
           Udstillinger
         </h1>
       </div>
 
-      <div className="mt-6">
+      <div className="mt-6 px-16">
         {[1, 2, 3].map((locationId) => {
           const events = eventGroups[locationId];
 
           return events.length > 0 ? (
             <div key={locationId}>
-              <div className="  ">
+              <div className="6">
                 {locationId === 1 ? (
-                  <div className="flex items-center justify-between gap-4">
-                    <h1 className="text-2xl-fluid font-extrabold my-6">
+                  <div className="flex items-center justify-between mt-6 gap-4">
+                    <h1 className="text-2xl-fluid font-extrabold ">
                       {locations[locationId]}
                     </h1>
                     <DropdownLocations />
@@ -63,6 +63,7 @@ export default async function eventPage() {
                   </div>
                 ))}
               </div>
+              <hr className="my-8 border-t-4 border-(--color-public-text-secondary)" />
             </div>
           ) : null;
         })}
