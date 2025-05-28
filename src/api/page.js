@@ -77,6 +77,7 @@ export async function deleteEvent(id) {
 
   return await res.json();
 }
+
 export async function updateEvent(id, updatedData) {
   const res = await fetch(`https://eksamenso.onrender.com/events/${id}`, {
     method: "PATCH",

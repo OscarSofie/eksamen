@@ -10,91 +10,72 @@ import {
 } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import Button from "../Button";
+import Burger from "./Burger";
 
-const Header = ({ isCurator }) => {
+const Header = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
+  const isHome = pathname === "/";
   const hideHeader =
     pathname.startsWith("/sign-in") || pathname.startsWith("/sign-up");
 
   if (hideHeader) return null;
 
+  const navClass = `flex items-center justify-between w-full z-50 px-4 sm:px-8 lg:px-16 py-4 ${
+    isHome
+      ? "absolute top-0 left-0 right-0 bg-transparent text-white"
+      : "relative bg-white text-kurator-primary border-b border-gray-200"
+  }`;
+
   return (
-    <nav className="bg-transparent border-b border-gray-200">
-      <div className="flex justify-between items-center p-4 max-w-screen-xl mx-auto">
-        <Link href="/">
-          <div className="text-4xl font-extrabold">SMK.</div>
-        </Link>
-
-   
-        <button
-          className="sm:hidden text-2xl focus:outline-none"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          ☰
-        </button>
-
-     
-        <ul className="hidden sm:flex gap-8 items-center">
-          <li>
-            <Link href="/events" className="hover:text-kurator-secondary">
-              Udstillinger
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" className="hover:text-kurator-secondary">
-              Om SMK
-            </Link>
-          </li>
-        </ul>
-
-        
-        <div className="hidden sm:flex items-center gap-4">
-          <SignedOut>
-            <SignInButton className="border border-kurator-primary px-3 py-1" />
-          </SignedOut>
-          <SignedIn>
-            <Link href="/secret/opret">
-              <Button variant="secondary">Opret Event</Button>
-            </Link>
-            <UserButton />
-          </SignedIn>
-        </div>
+    <nav className={navClass}>
+      {/* Venstre: Logo */}
+      <div className="text-2xl-fluid font-extrabold">
+        <Link href="/">SMK<span className="text-red-500">.</span></Link>
       </div>
 
- 
-      {isOpen && (
-        <div className="sm:hidden px-4 pb-4 space-y-4">
-          <ul className="flex flex-col gap-4">
-            <li>
-              <Link href="/events" onClick={() => setIsOpen(false)}>
-                Udstillinger
-              </Link>
-            </li>
+      {/* Midten: Navigation (skjules på små skærme) */}
+      <ul className="hidden sm:flex gap-8 items-center text-sm-fluid font-medium">
+        <li>
+          <Link href="/events" className="hover:text-kurator-secondary">
+            Udstillinger
+          </Link>
+        </li>
+        <li>
+          <Link href="/about" className="hover:text-kurator-secondary">
+            Om SMK
+          </Link>
+        </li>
+        <li>
+          <Link href="/about" className="hover:text-kurator-secondary">
+            Lokationer
+          </Link>
+        </li>
+        <li>
+          <Link href="/about" className="hover:text-kurator-secondary">
+            Kontakt
+          </Link>
+        </li>
+      </ul>
 
-            <li>
-              <Link href="/about" onClick={() => setIsOpen(false)}>
-                Om SMK
-              </Link>
-            </li>
-          </ul>
+     
+      <div className="hidden sm:flex items-center gap-4 text-xs-fluid">
+        <SignedOut>
+          <SignInButton className="border border-kurator-primary px-3 py-1" />
+        </SignedOut>
+        <SignedIn>
+          <Link href="/secret/opret">
+            <Button variant="secondary">Opret Event</Button>
+          </Link>
+          <UserButton />
+        </SignedIn>
+      </div>
 
-          <SignedOut>
-            <SignInButton className="border border-kurator-primary px-3 py-1" />
-          </SignedOut>
-
-          <SignedIn>
-            <div className="flex flex-col gap-2">
-              <Link href="/secret/opret" onClick={() => setIsOpen(false)}>
-                <Button variant="secondary">Opret Event</Button>
-              </Link>
-              <UserButton />
-            </div>
-          </SignedIn>
-        </div>
-      )}
+    
+      <div className="sm:hidden">
+        <Burger />
+      </div>
     </nav>
   );
 };

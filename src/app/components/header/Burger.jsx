@@ -1,42 +1,72 @@
 "use client";
 
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
-
-const locations = [
-  { id: 1, name: "København", path: "/events?location=1" },
-  { id: 2, name: "Aarhus", path: "/events?location=2" },
-  { id: 3, name: "Odense", path: "/events?location=3" },
-];
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import Button from "../Button";
 
 const Burger = () => {
-  return (
-    <Menu as="div" className="relative inline-block text-left">
-      <MenuButton className="inline-flex items-center gap-1 rounded-md border border-kurator-primary bg-kurator-bg px-4 py-2 text-sm text-kurator-primary font-semibold hover:bg-kurator-primary hover:text-kurator-bg transition">
-        Lokationer
-        <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
-      </MenuButton>
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
-      <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/10 focus:outline-none">
-        {locations.map((loc) => (
-          <MenuItem key={loc.id}>
-            {({ active }) => (
-              <Link
-                href={loc.path}
-                className={`block px-4 py-2 text-sm ${
-                  active
-                    ? "bg-kurator-primary text-kurator-bg"
-                    : "text-kurator-primary"
-                }`}
-              >
-                {loc.name}
-              </Link>
-            )}
-          </MenuItem>
-        ))}
-      </MenuItems>
-    </Menu>
+  const textColor = isHome ? "text-white" : "text-kurator-primary";
+  const bgColor = isHome ? "bg-transparent" : "bg-kurator-bg";
+  const borderColor = isHome ? "border-white" : "border-kurator-primary";
+
+  return (
+    <div className="sm:hidden relative z-[100]">
+      <button
+        onClick={() => setIsOpen(true)}
+        className={`text-2xl px-4 py-2 transition ${textColor} ${bgColor} ${borderColor}`}
+        aria-label="Toggle menu"
+      >
+        ☰
+      </button>
+
+      {isOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/40 z-40"
+            onClick={() => setIsOpen(false)}
+          ></div>
+
+          <div className="fixed top-0 right-0 h-screen w-1/2 bg-white shadow-lg p-6 flex flex-col gap-6 z-50">
+            <ul className="flex flex-col gap-4 text-kurator-primary text-2xl-fluid">
+              <li className="border-b pb-2">
+                <Link href="/events" onClick={() => setIsOpen(false)}>
+                  Udstillinger
+                </Link>
+              </li>
+              <li className="border-b pb-2">
+                <Link href="/about" onClick={() => setIsOpen(false)}>
+                  Om SMK
+                </Link>
+              </li>
+            </ul>
+
+            <div className="mt-auto flex flex-col gap-4">
+              <SignedOut>
+                <SignInButton>
+                  <Button variant="primary">Log ind</Button>
+                </SignInButton>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+                <Button
+                  variant="primary"
+                  href="/secret/opret"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Opret Event
+                </Button>
+              </SignedIn>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
   );
 };
 

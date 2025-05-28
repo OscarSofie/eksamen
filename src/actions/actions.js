@@ -56,6 +56,6 @@ export async function redigerEvent(formData) {
 export async function sletEvent(formData) {
   const id = formData.get("eventId");
   await deleteEvent(id);
-  await deleteEvent(id);
+ 
   redirect("/events");
 }
