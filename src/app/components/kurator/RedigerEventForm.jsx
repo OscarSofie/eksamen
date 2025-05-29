@@ -45,8 +45,8 @@ export default function RedigerEventForm({ event }) {
         name="locationId"
         required
         className="border border-[var(--color-kurator-primary)] p-2 text-[var(--text-sm)] leading-[var(--leading-normal)]"
+        defaultValue={event.location?.name}
       >
-        <option value="">{event.location?.name}</option>
         <option value="1">Kunsthallen A</option>
         <option value="2">Galleri B</option>
         <option value="3">Warehouse C</option>
@@ -56,6 +56,7 @@ export default function RedigerEventForm({ event }) {
         name="date"
         required
         className="border border-[var(--color-kurator-primary)] p-2 text-[var(--text-sm)] leading-[var(--leading-normal)]"
+        defaultValue={event.date}
       >
         <option value="">{event.date}</option>
         {[
