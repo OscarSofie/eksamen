@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="full-bleed bg-neutral-900 text-white px-6 md:px-16 py-16 text-sm-fluid">
+    <footer className="full-bleed bg-kurator-primary text-white px-6 md:px-16 py-16 text-sm-fluid">
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
         <div className="space-y-6">
           <div>
@@ -65,7 +65,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <ul className="space-y-1 underline underline-offset-2 mt-4">
+          <ul className="space-y-1 underline mt-4">
             <li><Link href="#">Fakturering</Link></li>
             <li><Link href="#">Fotosalg</Link></li>
             <li><Link href="#">Leje af SMK</Link></li>
@@ -74,9 +74,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="mt-16 text-center text-xs-fluid text-neutral-400">
-        &copy; {new Date().getFullYear()} Statens Museum for Kunst – Alle rettigheder forbeholdes
-      </div>
+
     </footer>
   );
 };

@@ -1,19 +1,34 @@
-const DropdownLocations = () => {
+"use client";
+
+const DropdownLocations = ({ locations }) => {
+  const changeLocation = (e) => {
+    const locationId = e.target.value;
+    if (locationId) {
+      const target = document.getElementById(`location-${locationId}`);
+      if (target) {
+        window.scrollTo(0, target.offsetTop);
+      }
+    }
+  };
+
   return (
     <div>
-      <div className="flex flex-col gap-2 ">
+      <div className="flex flex-col gap-2">
         <label className="font-semibold text-kurator-primary text-sm-fluid">
           Lokation
         </label>
         <select
           id="locationId"
           name="locationId"
-          className="border border-kurator-primary text-kurator-primary bg-kurator-bg px-4 py-2 text-sm-fluid leading-normal"
+          onChange={changeLocation}
+          className="border border-kurator-primary text-kurator-primary px-4 py-2 text-sm-fluid leading-normal"
         >
           <option value="">Vælg lokation</option>
-          <option value="1">København</option>
-          <option value="2">Aarhus</option>
-          <option value="3">Odense</option>
+          {locations.map((loc) => (
+            <option key={loc.id} value={loc.id}>
+              {loc.name}
+            </option>
+          ))}
         </select>
       </div>
     </div>

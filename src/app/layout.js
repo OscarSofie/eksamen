@@ -22,11 +22,11 @@ export default function RootLayout({ children }) {
       <html lang="da">
         <body>
         <Header />
-          <div className="grid-wrapper">
+         
             {children}
-          </div>
-        </body>
+        
         <Footer />
+        </body>
       </html>
     </ClerkProvider>
   );

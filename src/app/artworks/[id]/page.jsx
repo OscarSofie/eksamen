@@ -9,8 +9,6 @@ const ArtSingleview = async ({ params }) => {
 
   const item = art.items?.[0];
 
-  console.log(item);
-
   const fetchSimilarArt = async (url) => {
     const res = await fetch(url);
     const data = await res.json();
@@ -32,49 +30,54 @@ const ArtSingleview = async ({ params }) => {
     : [];
 
   return (
-    <div>
-      <div
-        className="static h-screen flex justify-center items-center "
-        style={{ backgroundColor: item.suggested_bg_color }}
-      >
+    <div className="text-kurator-primary">
+      {/* Hero section */}
+      <div className="relative w-full h-[75vh] flex items-center justify-center border-b">
         <Image
-          key={item.id}
           src={item.image_thumbnail}
-          width={1000}
-          height={900}
-          className="  object-cover  lg:h-[85vh] md:w-auto h-full  "
-        ></Image>
+          alt={item.titles?.[0]?.title || "Værk billede"}
+          fill
+          className="object-contain"
+        />
       </div>
-      <div className="absolute left-10 bottom-1/3 top-1/2  z-20 text-[#eae8e0] place-self-center ">
-        <h1 className="text-7xl font-extrabold max-w-4xl">
-          {item.titles?.[0].title}
+
+      {/* Info section */}
+      <div className="px-6 md:px-20 py-10 space-y-4">
+        <h1 className="text-4xl md:text-6xl font-extrabold">
+          {item.titles?.[0]?.title}
         </h1>
+        <p className="text-base-fluid">{item.artist}</p>
+        <p className="text-sm-fluid italic">{item.techniques?.[0]}</p>
+        <p className="text-sm-fluid">
+          {item.production_date?.[0]?.period}
+        </p>
+        <p className="text-sm-fluid">
+          {item.production?.[0]?.creator_history}
+        </p>
       </div>
 
-      <h2 className="max-w-[500px]">{item.artist}</h2>
-
-      <p>{item.techniques?.[0]}</p>
-      <p>{item.production_date?.[0].period}</p>
-      <p>{item.production?.[0].creator_history}</p>
-
+      {/* Similar artworks */}
       {similarArtworks.length > 0 && (
-        <div className="mt-10">
-          <h3 className="text-4xl font-extrabold mb-4">LIGNENDE VÆRKER:</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {similarArtworks.map((artwork) =>
-              artwork ? (
-                <div key={artwork.id} className="flex flex-col items-center">
-                  <Link href={`/artworks/${artwork.object_number}`}>
+        <div className="px-6 md:px-20 py-10 border-t">
+          <h2 className="text-2xl-fluid font-bold mb-6">Lignende værker</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {similarArtworks.map(
+              (artwork) =>
+                artwork && (
+                  <Link
+                    key={artwork.id}
+                    href={`/artworks/${artwork.object_number}`}
+                    className="block hover:scale-105 transition-transform"
+                  >
                     <Image
                       src={artwork.image_thumbnail}
-                      width={300}
-                      height={300}
-                      className="object-cover"
                       alt={artwork.titles?.[0]?.title || "Ukendt titel"}
+                      width={400}
+                      height={300}
+                      className="object-cover w-full"
                     />
                   </Link>
-                </div>
-              ) : null
+                )
             )}
           </div>
         </div>
