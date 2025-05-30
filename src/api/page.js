@@ -48,16 +48,13 @@ export async function getSingleEvent(artworkIds) {
 }
 
 export async function createEvent(data) {
-  console.log("server:", JSON.stringify(data, null, 2));
-
   const res = await fetch("https://eksamenso.onrender.com/events/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
-  const responseText = await res.text();
 
-  console.log("response:", res.status, responseText);
+  const responseText = await res.text();
 
   if (!res.ok) {
     throw new Error("Noget gik galt under oprettelse af event");
@@ -99,19 +96,6 @@ export async function fetchSomeArtworks() {
   const data = await res.json();
   return data.items;
 }
-
-// export async function bookTickets(id, updatedTickets) {
-//   const res = await fetch(`https://eksamenso.onrender.com/events/${id}`, {
-//     method: "PATCH",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(updatedTickets),
-//   });
-
-//   if (!res.ok) {
-//     throw new Error("Noget gik galt");
-//   }
-//   return await res.json();
-// }
 
 export async function bookTickets(id, updatedTickets) {
   if (typeof updatedTickets.bookedTickets !== "number") {
