@@ -31,7 +31,7 @@ const ArtSingleview = async ({ params }) => {
 
   return (
     <div className="text-kurator-primary">
-      {/* Hero section */}
+    
       <div className="relative w-full h-[75vh] flex items-center justify-center border-b">
         <Image
           src={item.image_thumbnail}
@@ -41,7 +41,7 @@ const ArtSingleview = async ({ params }) => {
         />
       </div>
 
-      {/* Info section */}
+    
       <div className="px-6 md:px-20 py-10 space-y-4">
         <h1 className="text-4xl md:text-6xl font-extrabold">
           {item.titles?.[0]?.title}
@@ -51,12 +51,12 @@ const ArtSingleview = async ({ params }) => {
         <p className="text-sm-fluid">
           {item.production_date?.[0]?.period}
         </p>
-        <p className="text-sm-fluid">
+        <p className="text-sm-fluid columns-1 md:columns-2 gap-10">
           {item.production?.[0]?.creator_history}
         </p>
       </div>
 
-      {/* Similar artworks */}
+      
       {similarArtworks.length > 0 && (
         <div className="px-6 md:px-20 py-10 border-t">
           <h2 className="text-2xl-fluid font-bold mb-6">Lignende værker</h2>
