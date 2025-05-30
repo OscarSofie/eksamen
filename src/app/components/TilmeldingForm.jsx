@@ -25,6 +25,7 @@ export default function TilmeldingForm({ event }) {
       return;
     }
     const newBookedTickets = booked + selectedTickets;
+    const orderId = generateOrderId();
 
     router.refresh();
 
@@ -35,12 +36,21 @@ export default function TilmeldingForm({ event }) {
 
       setBooked(newBookedTickets);
 
-      const orderId = generateOrderId();
+      const res = await fetch("/api/sendMail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, orderId, selectedTickets }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Fejl ved afsendelse af mail");
+      }
 
       router.push(
         `/bestilling?email=${encodeURIComponent(email)}&orderId=${orderId}`
       );
     } catch (err) {
+      console.error(err);
       setError("Der opstod en fejl. Prøv igen senere.");
     }
   };

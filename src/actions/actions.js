@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { createEvent } from "@/api/page";
 import { deleteEvent } from "@/api/page";
 import { updateEvent } from "@/api/page";
+import { revalidatePath } from "next/cache";
 
 export async function opretEvent(formData) {
   const title = formData.get("title");
@@ -26,6 +27,8 @@ export async function opretEvent(formData) {
   console.log("Sender data til createEvent:", artworkIds);
 
   const newEvent = await createEvent(data);
+
+  revalidatePath(`/secret/opret`);
 
   redirect(`/events/${newEvent.id}`);
 }

@@ -1,9 +1,6 @@
 // app/secret/[id]/page.jsx
 import RedigerEventForm from "@/app/components/kurator/RedigerEventForm";
 import AllArtworks from "@/app/components/kurator/AllArtworks";
-import SearchArt from "@/app/components/kurator/SearchArt";
-import RedigerArtworks from "@/app/components/RedigerArtworks";
-import { getSingleArtwork } from "@/api/page";
 
 export default async function Page({ params }) {
   const { id } = params;
