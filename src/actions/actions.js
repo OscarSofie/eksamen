@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { createEvent } from "@/api/page";
 import { deleteEvent } from "@/api/page";
 import { updateEvent } from "@/api/page";
+import { getEvents } from "@/api/page";
 
 export async function opretEvent(formData) {
   const title = formData.get("title");
@@ -13,6 +14,18 @@ export async function opretEvent(formData) {
   const locationId = formData.get("locationId");
   const artworkIdsString = formData.get("artworkIds");
   const artworkIds = JSON.parse(artworkIdsString || "[]");
+
+   // Prompt: Hvordan tjekker jeg om nogle IDs allerede er brugt i en bestemt kontekst?
+  const events = await getEvents();
+  const notAvailable = events.some(
+    (event) =>
+      event.date === date &&
+      event.artworkIds?.some((artworkId) => artworkIds.includes(artworkId))
+  );
+
+  if (notAvailable) {
+    throw new Error("Et eller flere værker er allerede valgt til denne dato.");
+  }
 
   const data = {
     title,
@@ -40,6 +53,18 @@ export async function redigerEvent(formData) {
   const artworkIdsString = formData.get("artworkIds");
   const artworkIds = JSON.parse(artworkIdsString || "[]");
 
+  const events = await getEvents();
+  const notAvailable = events.find(
+    (event) =>
+      event.id !== id &&
+      event.date === date &&
+     event.artworkIds?.some((artworkId) => artworkIds.includes(artworkId))
+  );
+
+  if (notAvailable) {
+    throw new Error("Et eller flere valgte værker er allerede brugt på den dato.");
+  }
+
   const updatedData = {};
 
   if (title) updatedData.title = title;
@@ -56,6 +81,6 @@ export async function redigerEvent(formData) {
 export async function sletEvent(formData) {
   const id = formData.get("eventId");
   await deleteEvent(id);
- 
+
   redirect("/events");
 }
