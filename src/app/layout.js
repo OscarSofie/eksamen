@@ -6,6 +6,15 @@ import Footer from "./components/layout/Footer";
 
 import { Inter } from "next/font/google";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -21,11 +30,11 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="da">
         <body>
-        <Header />
-         
-            {children}
-        
-        <Footer />
+          <Header />
+
+          {children}
+
+          <Footer />
         </body>
       </html>
     </ClerkProvider>

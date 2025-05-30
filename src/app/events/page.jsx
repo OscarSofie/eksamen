@@ -2,6 +2,15 @@ import { getEvents } from "../../api/page";
 import EventCard from "../components/EventCard";
 import DropdownLocations from "../components/DropdownLocations";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
 const allLocations = {
   1: "København",
   2: "Aarhus",
@@ -17,14 +26,12 @@ export default async function eventPage() {
     3: [],
   };
 
-  
   allEvents.forEach((event) => {
     if (eventGroups[event.locationId]) {
       eventGroups[event.locationId].push(event);
     }
   });
 
- 
   const ifChosenLocation = [];
   for (const id in eventGroups) {
     if (eventGroups[id].length > 0) {
@@ -47,30 +54,43 @@ export default async function eventPage() {
           if (events.length === 0) return null;
 
           return (
-            <div key={locationId} id={`location-${locationId}`}>
-              <div className="mt-6 flex items-center justify-between gap-4">
-                <h1 className="text-2xl-fluid font-extrabold">
-                  {allLocations[locationId]}
-                </h1>
-                {locationId === 1 && (
-                  <DropdownLocations locations={ifChosenLocation} />
-                )}
+            <div>
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/events">Udstillnger</BreadcrumbLink>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+              <div key={locationId} id={`location-${locationId}`}>
+                <div className="mt-6 flex items-center justify-between gap-4">
+                  <h1 className="text-2xl-fluid font-extrabold">
+                    {allLocations[locationId]}
+                  </h1>
+                  {locationId === 1 && (
+                    <DropdownLocations locations={ifChosenLocation} />
+                  )}
+                </div>
+
+                <hr className="my-8 border-t-4 border-kurator-secondary" />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                  {events.map((event) => (
+                    <div
+                      key={event.id}
+                      className="transition-transform duration-300 hover:scale-105"
+                    >
+                      <EventCard event={event} />
+                    </div>
+                  ))}
+                </div>
+
+                <hr className="my-8 border-t-4 border-kurator-secondary" />
               </div>
-
-              <hr className="my-8 border-t-4 border-kurator-secondary" />
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                {events.map((event) => (
-                  <div
-                    key={event.id}
-                    className="transition-transform duration-300 hover:scale-105"
-                  >
-                    <EventCard event={event} />
-                  </div>
-                ))}
-              </div>
-
-              <hr className="my-8 border-t-4 border-kurator-secondary" />
             </div>
           );
         })}

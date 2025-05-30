@@ -1,8 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const ArtSingleview = async ({ params }) => {
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+
+const ArtSingleview = async ({ params, searchParams }) => {
   const { id } = params;
+
+  const eventId = searchParams.eventId;
+  const eventName = searchParams.eventName;
 
   const res = await fetch(`https://api.smk.dk/api/v1/art?object_number=${id}`);
   const art = await res.json();
@@ -31,7 +43,30 @@ const ArtSingleview = async ({ params }) => {
 
   return (
     <div className="text-kurator-primary">
-    
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/events">Udstillnger</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href={`/events/${eventId}`}>
+              {eventName}
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href={`/artworks/${id}`}>
+              {item.titles?.[0]?.title}
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
       <div className="relative w-full h-[75vh] flex items-center justify-center border-b">
         <Image
           src={item.image_thumbnail}
@@ -41,22 +76,18 @@ const ArtSingleview = async ({ params }) => {
         />
       </div>
 
-    
       <div className="px-6 md:px-20 py-10 space-y-4">
         <h1 className="text-4xl md:text-6xl font-extrabold">
           {item.titles?.[0]?.title}
         </h1>
         <p className="text-base-fluid">{item.artist}</p>
         <p className="text-sm-fluid italic">{item.techniques?.[0]}</p>
-        <p className="text-sm-fluid">
-          {item.production_date?.[0]?.period}
-        </p>
+        <p className="text-sm-fluid">{item.production_date?.[0]?.period}</p>
         <p className="text-sm-fluid columns-1 md:columns-2 gap-10">
           {item.production?.[0]?.creator_history}
         </p>
       </div>
 
-      
       {similarArtworks.length > 0 && (
         <div className="px-6 md:px-20 py-10 border-t">
           <h2 className="text-2xl-fluid font-bold mb-6">Lignende værker</h2>
@@ -66,7 +97,13 @@ const ArtSingleview = async ({ params }) => {
                 artwork && (
                   <Link
                     key={artwork.id}
-                    href={`/artworks/${artwork.object_number}`}
+                    href={{
+                      pathname: `/artworks/${artwork.object_number}`,
+                      query: {
+                        eventId: eventId,
+                        eventName: eventName,
+                      },
+                    }}
                     className="block hover:scale-105 transition-transform"
                   >
                     <Image
