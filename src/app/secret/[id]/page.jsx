@@ -2,6 +2,10 @@
 import RedigerEventForm from "@/app/components/kurator/RedigerEventForm";
 import AllArtworks from "@/app/components/kurator/AllArtworks";
 
+import { getSingleArtwork } from "@/api/page";
+
+import RedigerArtworks from "@/app/components/RedigerArtworks";
+
 export default async function Page({ params }) {
   const { id } = params;
 
