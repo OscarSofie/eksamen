@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -98,3 +98,4 @@ const Header = ({ isCurator }) => {
 };
 
 export default Header;
+ */

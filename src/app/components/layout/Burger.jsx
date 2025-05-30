@@ -33,10 +33,7 @@ const Burger = () => {
           ></div>
           <div className="fixed top-0 right-0 h-screen w-1/2 border-l-2 bg-white p-6 flex flex-col gap-6 z-50">
             <div className="flex flex-row justify-between items-center">
-              <Link
-                href="/"
-                className="text-lg-fluid font-bold"
-              >
+              <Link href="/" className="text-lg-fluid font-bold">
                 SMK<span className="text-red-500">.</span>
               </Link>
               <button
@@ -70,7 +67,15 @@ const Burger = () => {
               <SignedIn>
                 <UserButton />
                 <Link href="/secret/opret" onClick={() => setIsOpen(false)}>
-                  <Button variant="primary">Opret Event</Button>
+                  <Link
+                    href="/secret/opret"
+                    onNavigate={(e) => {
+                      e.preventDefault();
+                      window.location.href = "/secret/opret";
+                    }}
+                  >
+                    <Button variant="primary">Opret Event</Button>
+                  </Link>
                 </Link>
               </SignedIn>
             </div>

@@ -36,42 +36,6 @@ const Header = () => {
         <Link href="/">SMK<span className="text-red-500">.</span></Link>
       </div>
 
-    {/* 
-      <ul className="hidden sm:flex gap-8 items-center text-sm-fluid font-medium">
-        <li>
-          <Link href="/events" className="hover:text-kurator-secondary">
-            Udstillinger
-          </Link>
-        </li>
-        <li>
-          <Link href="/about" className="hover:text-kurator-secondary">
-            Om SMK
-          </Link>
-        </li>
-        <li>
-          <Link href="/about" className="hover:text-kurator-secondary">
-            Lokationer
-          </Link>
-        </li>
-        <li>
-          <Link href="/about" className="hover:text-kurator-secondary">
-            Kontakt
-          </Link>
-        </li>
-      </ul>
-
-     
-      <div className="hidden sm:flex items-center gap-4 text-xs-fluid">
-        <SignedOut>
-          <SignInButton className="border border-kurator-primary px-3 py-1" />
-        </SignedOut>
-        <SignedIn>
-          <Link href="/secret/opret">
-            <Button variant="primary">Opret Event</Button>
-          </Link>
-          <UserButton />
-        </SignedIn>
-      </div> */}
 
     
       <div>
