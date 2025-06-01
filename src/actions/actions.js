@@ -15,7 +15,7 @@ export async function opretEvent(formData) {
   const artworkIdsString = formData.get("artworkIds");
   const artworkIds = JSON.parse(artworkIdsString || "[]");
 
-   // Prompt: Hvordan tjekker jeg om nogle IDs allerede er brugt i en bestemt kontekst?
+  // Prompt: Hvordan tjekker jeg om nogle IDs allerede er brugt i en bestemt kontekst?
   const events = await getEvents();
   const notAvailable = events.some(
     (event) =>
@@ -40,8 +40,6 @@ export async function opretEvent(formData) {
 
   const newEvent = await createEvent(data);
 
-  revalidatePath(`/secret/opret`);
-
   redirect(`/events/${newEvent.id}`);
 }
 
@@ -60,11 +58,13 @@ export async function redigerEvent(formData) {
     (event) =>
       event.id !== id &&
       event.date === date &&
-     event.artworkIds?.some((artworkId) => artworkIds.includes(artworkId))
+      event.artworkIds?.some((artworkId) => artworkIds.includes(artworkId))
   );
 
   if (notAvailable) {
-    throw new Error("Et eller flere valgte værker er allerede brugt på den dato.");
+    throw new Error(
+      "Et eller flere valgte værker er allerede brugt på den dato."
+    );
   }
 
   const updatedData = {};
