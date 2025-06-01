@@ -21,7 +21,7 @@ const SingleEvent = async ({ params }) => {
   const artworks = await getSingleArtwork(event.artworkIds);
 
   return (
-    <div className="text-kurator-primary mt-2 md:mt-10 ">
+    <div className="text-kurator-primary md:mt-10 mt-6 px-16">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -40,7 +40,7 @@ const SingleEvent = async ({ params }) => {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="relative h-[75vh] w-full flex items-center justify-center border-b-1">
+      <div className="relative h-[75vh] w-full flex items-center justify-center mt-6 border-b-1">
         <Image
           src={heroArt?.image_thumbnail || "/img/placeholder.svg"}
           alt={event.title}
@@ -94,10 +94,8 @@ const SingleEvent = async ({ params }) => {
         </div>
       </div>
 
-      <div className="border-t pt-8 pb-8 px-6">
-        <p className="text-md-fluid font-semibold mb-4">
-          Pris: 200 kr pr. billet
-        </p>
+      <div className="border-t pt-8 pb-8 px-20">
+    
         <Link href={`/tilmelding/${event.id}`}>
           <button className="border border-kurator-primary px-4 py-2 font-semibold hover:bg-kurator-primary hover:text-white transition text-sm-fluid">
             Tilmeld dig eventet

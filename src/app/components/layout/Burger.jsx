@@ -31,7 +31,7 @@ const Burger = () => {
             className="fixed inset-0 bg-black/40 z-20"
             onClick={() => setIsOpen(false)}
           ></div>
-          <div className="fixed top-0 right-0 h-screen w-1/2 border-l-2 bg-white p-6 flex flex-col gap-6 z-50">
+          <div className="fixed top-0 right-0 h-screen sm:w-1/2 w-full border-l-2 bg-white p-6 flex flex-col gap-6 z-50">
             <div className="flex flex-row justify-between items-center">
               <Link href="/" className="text-lg-fluid font-bold">
                 SMK<span className="text-red-500">.</span>

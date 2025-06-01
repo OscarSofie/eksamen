@@ -1,13 +1,11 @@
-import { getEvents } from "../../api/page";
-import EventCard from "../components/EventCard";
-import DropdownLocations from "../components/DropdownLocations";
-
+import { getEvents } from "@/api/page";
+import EventCard from "@/app/components/EventCard";
+import DropdownLocations from "@/app/components/DropdownLocations";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
@@ -17,14 +15,10 @@ const allLocations = {
   3: "Odense",
 };
 
-export default async function eventPage() {
+export default async function EventPage() {
   const allEvents = await getEvents();
 
-  const eventGroups = {
-    1: [],
-    2: [],
-    3: [],
-  };
+  const eventGroups = { 1: [], 2: [], 3: [] };
 
   allEvents.forEach((event) => {
     if (eventGroups[event.locationId]) {

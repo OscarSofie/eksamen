@@ -25,7 +25,7 @@ const EventHero = ({ event, heroImage, eventButton = false }) => {
 
         <div className="flex flex-col justify-center w-full space-y-6 px-2">
           <p className="text-sm-fluid leading-tight tracking-wide uppercase">Udstilling</p>
-          <h2 className="text-3xl-fluid font-extrabold leading-loose">
+          <h2 className="text-3xl-fluid font-extrabold leading-tight">
             {event.title}
           </h2>
           <p className="text-base-fluid text-kurator-primary leading-normal">

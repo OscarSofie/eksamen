@@ -9,6 +9,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Hero from "./components/Hero";
+import Header from "./components/layout/Header";
 
 export default async function Home() {
   const allEvents = await getEvents();
@@ -30,10 +32,15 @@ export default async function Home() {
 
 
   return (
-    <main className="grid">
-     
-      <div className="relative  h-screen bg-img text-white full-bleed">
-        <div className="relative mt-6 z-10 h-full flex items-center px-2 md:px-16">
+    <div>
+      <div className="bg-img min-h-dvh">
+
+        <Hero />
+      </div>
+      <main className="grid">
+
+        {/*      <div className="relative bg-img min-h-dvh text-white">
+        <div className="relative mt-6 z-10 min-h-dvh flex items-center px-2 md:px-16">
           <div className=" space-y-6 border-3 border-white p-15 ml-0 sm:ml-10">
             <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
               Statens Museum for Kunst
@@ -54,30 +61,35 @@ export default async function Home() {
           </div>
         </div>
         <div className="absolute inset-0 bg-black/40 z-0" />
-      </div>
+      </div> */}
 
 
-      <div className="px-6 md:px-16 py-12 bg-[#C6DDED]">
-        <Carousel className="w-full">
-          <CarouselContent>
-            {heroEvents.map((event) => (
-              <CarouselItem
-                key={event.id}
-              
-              >
-                <EventHero
-                  event={event}
-                  heroImage={event.heroImage}
-                  eventButton
-                />
-              </CarouselItem>
-        ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-      </div>
 
-    </main>
+
+        <div className="px-6 md:px-16 py-12 bg-[#C6DDED]">
+          <Carousel className="w-full">
+            <CarouselContent>
+              {heroEvents.map((event) => (
+                <CarouselItem
+                  key={event.id}
+
+                >
+                  <EventHero
+                    event={event}
+                    heroImage={event.heroImage}
+                    eventButton
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center gap-4 mt-4">
+              <CarouselPrevious />
+              <CarouselNext />
+            </div>
+          </Carousel>
+        </div>
+
+      </main>
+    </div>
   );
 }
