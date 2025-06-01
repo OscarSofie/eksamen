@@ -43,7 +43,7 @@ const ArtSingleview = async ({ params, searchParams }) => {
     : [];
 
   return (
-    <div className="text-kurator-primary">
+    <div className="text-kurator-primary mt-6 px-16">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -68,12 +68,12 @@ const ArtSingleview = async ({ params, searchParams }) => {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="relative w-full h-[75vh] flex items-center justify-center border-b">
+      <div className="relative w-full h-[75vh] flex items-center justify-center border-b mt-6">
         <Image
           src={item.image_thumbnail}
           alt={item.titles?.[0]?.title || "Værk billede"}
           fill
-          className="object-contain"
+          className="w-full h-auto object-contain pb-0 md:pb-10"
         />
       </div>
 

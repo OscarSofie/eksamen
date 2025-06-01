@@ -40,7 +40,19 @@ export default async function EventPage() {
           Udstillinger
         </h1>
       </div>
-
+      <div className="mt-6 px-16">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/events">Udstillinger</BreadcrumbLink>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
       <div className="mt-6 px-16">
         {[1, 2, 3].map((locationId) => {
           const events = eventGroups[locationId];
@@ -48,18 +60,6 @@ export default async function EventPage() {
 
           return (
             <div key={locationId}>
-              <Breadcrumb>
-                <BreadcrumbList>
-                  <BreadcrumbItem>
-                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                  <BreadcrumbItem>
-                    <BreadcrumbLink href="/events">Udstillinger</BreadcrumbLink>
-                  </BreadcrumbItem>
-                </BreadcrumbList>
-              </Breadcrumb>
-
               <div id={`location-${locationId}`}>
                 <div className="mt-6 flex items-center justify-between gap-4">
                   <h1 className="text-2xl-fluid font-extrabold">
