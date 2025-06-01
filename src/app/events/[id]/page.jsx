@@ -83,7 +83,7 @@ const SingleEvent = async ({ params }) => {
               >
                 <Image
                   src={art.image_thumbnail}
-                  alt={art.title}
+                  alt={art}
                   width={400}
                   height={300}
                   className="w-full h-auto object-cover"
@@ -95,7 +95,6 @@ const SingleEvent = async ({ params }) => {
       </div>
 
       <div className="border-t pt-8 pb-8 px-20">
-    
         <Link href={`/tilmelding/${event.id}`}>
           <button className="border border-kurator-primary px-4 py-2 font-semibold hover:bg-kurator-primary hover:text-white transition text-sm-fluid">
             Tilmeld dig eventet
