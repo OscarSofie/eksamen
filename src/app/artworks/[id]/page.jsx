@@ -6,22 +6,18 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
 const ArtSingleview = async ({ params, searchParams }) => {
   const { id } = params;
-
   const eventId = searchParams.eventId;
   const eventName = searchParams.eventName;
 
   const res = await fetch(`https://api.smk.dk/api/v1/art?object_number=${id}`);
   const art = await res.json();
-
   const item = art.items?.[0];
 
-  // Prompt: Hvordan laver jeg et fetch for hver ID i en liste og får alle resultaterne samlet, uden at de bliver hentet én ad gangen?
   const fetchSimilarArt = async (url) => {
     const res = await fetch(url);
     const data = await res.json();
@@ -43,7 +39,7 @@ const ArtSingleview = async ({ params, searchParams }) => {
     : [];
 
   return (
-    <div className="text-kurator-primary mt-6 px-16">
+    <div className="text-kurator-primary mt-6 px-1 md:px-16">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -51,7 +47,7 @@ const ArtSingleview = async ({ params, searchParams }) => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/events">Udstillnger</BreadcrumbLink>
+            <BreadcrumbLink href="/events">Udstillinger</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -77,7 +73,7 @@ const ArtSingleview = async ({ params, searchParams }) => {
         />
       </div>
 
-      <div className="px-6 md:px-20 py-10 space-y-4">
+      <div className="px-1 md:px-20 py-10 space-y-4">
         <h1 className="text-4xl md:text-6xl font-extrabold">
           {item.titles?.[0]?.title}
         </h1>
@@ -90,7 +86,7 @@ const ArtSingleview = async ({ params, searchParams }) => {
       </div>
 
       {similarArtworks.length > 0 && (
-        <div className="px-6 md:px-20 py-10 border-t">
+        <div className="px-1 md:px-20 py-10 border-t">
           <h2 className="text-2xl-fluid font-bold mb-6">Lignende værker</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {similarArtworks.map(
