@@ -20,10 +20,13 @@ export default function TilmeldingForm({ event }) {
 
   const handleSubmit = async (mail) => {
     mail.preventDefault();
+
+    //Prompt: Giver det mening at skrive dette om til ternary rendering?
     if (!email.includes("@")) {
       setError("Indtast en gyldig emailadresse");
       return;
     }
+    //Kan jeg bruge router.refresh eller andet til at sørge for at siden opdateres når jeg har submittet, så totalTickets og bookedTickets opdateres?
     const newBookedTickets = booked + selectedTickets;
     const orderId = generateOrderId();
 
@@ -78,6 +81,7 @@ export default function TilmeldingForm({ event }) {
               min="1"
               max={available}
               value={selectedTickets}
+              //Giv mig en React onChange-handler til et number-input, som opdaterer en state-variabel med en tal og ikke en tekststreng
               onChange={(e) => setSelectedTickets(Number(e.target.value))}
               className="ml-2 border px-2 py-1 w-20"
             />
