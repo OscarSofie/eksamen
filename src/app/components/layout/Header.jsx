@@ -24,8 +24,8 @@ const Header = () => {
 
   const navClass = `flex items-center justify-between w-full z-50 px-4 sm:px-8 lg:px-16 py-4 ${
     isHome
-      ? "absolute top-0 left-0 right-0 bg-transparent text-white"
-      : "relative text-kurator-primary border-b border-text-kurator-primary"
+      ? " absolute top-0 left-0 right-0 bg-transparent text-white"
+      : " text-kurator-primary border-b border-text-kurator-primary"
   }`;
 
   return (

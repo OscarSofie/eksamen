@@ -21,6 +21,7 @@ const ArtSingleview = async ({ params, searchParams }) => {
 
   const item = art.items?.[0];
 
+  // Prompt: Hvordan laver jeg et fetch for hver ID i en liste og får alle resultaterne samlet, uden at de bliver hentet én ad gangen?
   const fetchSimilarArt = async (url) => {
     const res = await fetch(url);
     const data = await res.json();
