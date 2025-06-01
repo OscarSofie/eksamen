@@ -40,7 +40,18 @@ export default async function eventPage() {
   }
 
   return (
-    <div className="px-4 sm:px-8 lg:px-20 py-4">
+    <div className=" px-4 sm:px-8 lg:px-20 py-4">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/events">Udstillnger</BreadcrumbLink>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
       <div className="flex flex-row justify-between mt-6">
         <h1 className="text-3xl-fluid font-extrabold leading-tight underline">
           Udstillinger
@@ -55,17 +66,6 @@ export default async function eventPage() {
 
           return (
             <div>
-              <Breadcrumb>
-                <BreadcrumbList>
-                  <BreadcrumbItem>
-                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                  <BreadcrumbItem>
-                    <BreadcrumbLink href="/events">Udstillnger</BreadcrumbLink>
-                  </BreadcrumbItem>
-                </BreadcrumbList>
-              </Breadcrumb>
               <div key={locationId} id={`location-${locationId}`}>
                 <div className="mt-6 flex items-center justify-between gap-4">
                   <h1 className="text-2xl-fluid font-extrabold">
