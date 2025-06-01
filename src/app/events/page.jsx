@@ -17,7 +17,6 @@ const allLocations = {
 
 export default async function EventPage() {
   const allEvents = await getEvents();
-
   const eventGroups = { 1: [], 2: [], 3: [] };
 
   allEvents.forEach((event) => {
@@ -34,7 +33,7 @@ export default async function EventPage() {
   }
 
   return (
-    <div className=" px-4 sm:px-8 lg:px-20 py-4">
+    <div className="px-1 sm:px-8 lg:px-20 py-4">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -42,25 +41,25 @@ export default async function EventPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/events">Udstillnger</BreadcrumbLink>
+            <BreadcrumbLink href="/events">Udstillinger</BreadcrumbLink>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+
       <div className="flex flex-row justify-between mt-6">
         <h1 className="text-3xl-fluid font-extrabold leading-tight underline">
           Udstillinger
         </h1>
       </div>
 
-      <div className="mt-6 px-16">
+      <div className="mt-6 px-1 sm:px-16">
         {[1, 2, 3].map((locationId) => {
           const events = eventGroups[locationId];
-
           if (events.length === 0) return null;
 
           return (
-            <div>
-              <div key={locationId} id={`location-${locationId}`}>
+            <div key={locationId}>
+              <div id={`location-${locationId}`}>
                 <div className="mt-6 flex items-center justify-between gap-4">
                   <h1 className="text-2xl-fluid font-extrabold">
                     {allLocations[locationId]}

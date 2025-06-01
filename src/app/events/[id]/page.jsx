@@ -7,7 +7,6 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
@@ -21,7 +20,7 @@ const SingleEvent = async ({ params }) => {
   const artworks = await getSingleArtwork(event.artworkIds);
 
   return (
-    <div className="text-kurator-primary md:mt-10 mt-6 px-16">
+    <div className="text-kurator-primary md:mt-10 mt-6 px-1 md:px-16">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -29,13 +28,11 @@ const SingleEvent = async ({ params }) => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/events">Udstillnger</BreadcrumbLink>
+            <BreadcrumbLink href="/events">Udstillinger</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href={`/events/${id}`}>
-              {event.title}
-            </BreadcrumbLink>
+            <BreadcrumbLink href={`/events/${id}`}>{event.title}</BreadcrumbLink>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -48,7 +45,8 @@ const SingleEvent = async ({ params }) => {
           className="w-full h-auto object-contain pb-0 md:pb-10"
         />
       </div>
-      <div className="text-left text-kurator-primary px-6 md:px-16 py-2 md:py-16 space-y-5 mt-10 md:mt-0">
+
+      <div className="text-left text-kurator-primary px-1 md:px-16 py-2 md:py-16 space-y-5 mt-10 md:mt-0">
         <h1 className="text-4xl md:text-6xl font-extrabold">{event.title}</h1>
         <p className="text-md-fluid max-w-screen-md italic md:mt-10 mt-2 md:mb-6 mb-4">
           {event.description}
@@ -62,7 +60,7 @@ const SingleEvent = async ({ params }) => {
         </div>
       </div>
 
-      <div className="px-6 md:px-20 py-12 border-t">
+      <div className="px-1 md:px-20 py-12 border-t">
         <h2 className="text-2xl-fluid font-bold text-kurator-primary mb-4">
           Værker:
         </h2>
@@ -83,7 +81,7 @@ const SingleEvent = async ({ params }) => {
               >
                 <Image
                   src={art.image_thumbnail}
-                  alt={art}
+                  alt={art.title}
                   width={400}
                   height={300}
                   className="w-full h-auto object-cover"
@@ -94,7 +92,7 @@ const SingleEvent = async ({ params }) => {
         </div>
       </div>
 
-      <div className="border-t pt-8 pb-8 px-20">
+      <div className="border-t pt-8 pb-8 px-1 md:px-20">
         <Link href={`/tilmelding/${event.id}`}>
           <button className="border border-kurator-primary px-4 py-2 font-semibold hover:bg-kurator-primary hover:text-white transition text-sm-fluid">
             Tilmeld dig eventet
