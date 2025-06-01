@@ -9,6 +9,7 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import Button from "@/app/components/Button";
 
 const SingleEvent = async ({ params }) => {
   const { id } = params;
@@ -94,9 +95,9 @@ const SingleEvent = async ({ params }) => {
 
       <div className="border-t pt-8 pb-8 px-1 md:px-20">
         <Link href={`/tilmelding/${event.id}`}>
-          <button className="border border-kurator-primary px-4 py-2 font-semibold hover:bg-kurator-primary hover:text-white transition text-sm-fluid">
+          <Button variant="primary" >
             Tilmeld dig eventet
-          </button>
+          </Button>
         </Link>
       </div>
     </div>
