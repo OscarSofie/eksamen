@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+export const runtime = "nodejs";
 
 export async function POST(req) {
   const { email, orderId, selectedTickets } = await req.json();
