@@ -8,8 +8,6 @@ export default function OpretEventForm() {
   const { artworks } = useZustand();
   const artworkIds = artworks.map((art) => art.object_number);
 
-
-  
   return (
     <form
       action={opretEvent}
@@ -49,6 +47,7 @@ export default function OpretEventForm() {
         <option value="">Vælg lokation</option>
         <option value="1">Kunsthallen A</option>
         <option value="2">Galleri B</option>
+        <option value="3">Warehouse C</option>
       </select>
 
       <select
