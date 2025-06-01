@@ -5,18 +5,18 @@ import { getSearchResults } from "@/api/page";
 import { useZustand } from "@/store/zustand";
 import Image from "next/image";
 
-// SearchArt-komponent viser kunstværker og håndterer søgning og valg
+
 const SearchArt = ({ alleVaerker = [] }) => {
   const { artworks, addArtwork, removeArtwork } = useZustand();
 
-  // Her gemmer vi det kuratoren søger på
+  
   const [searchQuery, setsearchQuery] = useState("");
 
-  // her vises resultaterne fra API'et
+  
   const [results, setResults] = useState([]);
-  const [page, setPage] = useState(1); // - til sider
+  const [page, setPage] = useState(1); 
 
-  const prSide = 30; // - hvor mange værker der skal vises pr. side
+  const prSide = 30; 
 
   // Prompt: Hvordan laver jeg en søgefunktion der kalder et API og viser resultater? (uden useEffect)
   const soegVaerker = async () => {
