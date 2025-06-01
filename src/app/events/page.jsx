@@ -34,13 +34,13 @@ export default async function EventPage() {
   }
 
   return (
-    <div className="px-4 sm:px-8 lg:px-20 py-4">
+    <div className="px-1 sm:px-4 lg:px-20 py-4">
       <div className="flex flex-row justify-between mt-6">
         <h1 className="text-3xl-fluid font-extrabold leading-tight underline">
           Udstillinger
         </h1>
       </div>
-      <div className="mt-6 px-16">
+      <div className="mt-6 px-1 sm:px-16">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -53,7 +53,7 @@ export default async function EventPage() {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      <div className="mt-6 px-16">
+      <div className="mt-6 px-1 sm:px-16">
         {[1, 2, 3].map((locationId) => {
           const events = eventGroups[locationId];
           if (events.length === 0) return null;
